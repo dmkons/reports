@@ -8,6 +8,9 @@
 \usepackage[utf8]{inputenc} 
 	% set input encoding (not needed with XeLaTeX)
 
+\usepackage{cite}
+\usepackage{url}
+
 %%% PAGE DIMENSIONS
 \usepackage{geometry} % to change the page dimensions
 \geometry{a4paper}
@@ -32,7 +35,7 @@
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
 \pagestyle{fancy} % options: empty , plain , fancy
 \renewcommand{\headrulewidth}{0pt} % customise the layout...
-\lhead{}\chead{}\rhead{}
+\lhead{}\chead{}\rhead{TDT4255 Computer Design}
 \lfoot{}\cfoot{\thepage}\rfoot{}
 
 %%% SECTION TITLE APPEARANCE
@@ -45,8 +48,10 @@
 \renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
 \renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
 
-\title{\#Report}
-\author{\#Author}
+\title{Report for Assignment Numero Uno, TDT4255}
+\author{Rune Holmgren \and
+		Sigve Sebastian Farstad \and
+		Odd Magnus Trondrud}
 %\date{} % Activate to display a given date or no date (if empty),
          % otherwise the current date is printed 
 
@@ -74,6 +79,13 @@
 \section{Conclusion}
 	\input{conclusion/conclusion.tex}
 
+Dicks~\cite{compendium}
+
 %% The bibliography should go here.
+
+\bibliography{reference-library}{}
+\bibliographystyle{plain}
+%\nocite{*}
+
 
 \end{document}
