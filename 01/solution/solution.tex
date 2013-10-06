@@ -61,56 +61,11 @@ TODO: diagram of the program counter cycle.
 
 The multiplexer... do we even need to talk about it?
 
-\section{Instruction Set Architecture}
+\section{Instruction Set}
 
 The solution processor implements a modified subset of the MIPS instruction set.
 A quick reference of the MIPS instruction set can be found in Figure 3.4 of the compendium \cite{compendium}.
-The instructions, as in regular MIPS, can be on one of three general formats, R, I and J:
-
-
-\bigskip
-
-\begin{center}
-    \begin{bytefield}[endianness=big,bitwidth=0.03125\linewidth]{32}
-        \bitheader{0-31} \\
-        \begin{rightwordgroup}{R}
-            \bitbox{6}{Opcode} &
-            \bitbox{5}{Rs} &
-            \bitbox{5}{Rt} &
-            \bitbox{5}{Rd} &
-            \bitbox{5}{Shift}
-            \bitbox{6}{Function}
-        \end{rightwordgroup} \\
-    \end{bytefield}
-\end{center}
-
-\bigskip
-
-\begin{center}
-    \begin{bytefield}[endianness=big,bitwidth=0.03125\linewidth]{32}
-        \bitheader{0-31} \\
-        \begin{rightwordgroup}{I}
-            \bitbox{6}{Opcode} &
-            \bitbox{5}{Rs} &
-            \bitbox{5}{Rt} &
-            \bitbox{16}{Immediate}
-        \end{rightwordgroup} \\
-    \end{bytefield}
-\end{center}
-
-\bigskip
-
-\begin{center}
-    \begin{bytefield}[endianness=big,bitwidth=0.03125\linewidth]{32}
-        \bitheader{0-31} \\
-        \begin{rightwordgroup}{J}
-            \bitbox{6}{Opcode} &
-            \bitbox{26}{Address}
-        \end{rightwordgroup} \\
-    \end{bytefield}
-\end{center}
-
-(Yes, I just included these diagrams to show off with latex, really we can just refer to the reference sheet in the compendium).
+The instructions, as in regular MIPS, can be on one of three general formats, R, I and J.
 
 The solution processor implements the instructions in table \ref{table:implemented-instructions}.
 The processor supports quite a few more instructions than the minimum requirements.
