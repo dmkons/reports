@@ -1,3 +1,137 @@
 Describes your solution of the task.
 Contains a detailed description of all the subtasks which have been solved and how they contribute to the solution for the given task.
 The use of diagrams, figures, tables and similar is welcome as a support to your description.
+
+The processor presented as a solution for assignment 1 in this report is a 32-bit simple MIPS-inspired multi-cycle processor described in VHDL and programmed onto a Xilinx Spartan-6 LX25 FPGA.
+
+\section{Requirements}
+
+The requirements for the assignment is to design a simple multi-cycle MIPS architecture.
+It must be based around the suggested MIPS-like architecture in Figure 4.1 of the course compendium\cite{compendium}.
+Minimally, the following 10 insructions must be implemented:
+
+\begin{itemize}
+
+\item{\texttt{ADD}}
+\item{\texttt{SUB}}
+\item{\texttt{SLT}}
+\item{\texttt{AND}}
+\item{\texttt{OR}}
+\item{\texttt{BEQ}}
+\item{\texttt{LW}}
+\item{\texttt{SW}}
+\item{\texttt{LDI}\footnote{\texttt{LDI} is not actually a MIPS instruction, but it is assumed that it is interchangeable with \texttt{LUI}}}
+\item{\texttt{J}}
+
+\end{itemize}
+
+Optionally, more instructions can be implemented.
+The instruction set implemented by the solution processor is detailed in section [THE SECTION ABOUT THE ISA].
+
+Once the processor is designed, it must also be verified in a simulation environment as well as in a hardware platform.
+
+TODO: cite the compendium well enough when there is talk about requirements.
+
+\section{Processor Architecture}
+
+TODO: an image, box and arrows-style
+
+\subsection{Control Unit}
+\subsection{Program Counter}
+...
+\subsection{(Yes, one subsection per component)}
+
+
+\section{Instruction Set Architecture}
+
+The solution processor implements a modified subset of the MIPS instruction set.
+A quick reference of the MIPS instruction set can be found in Figure 3.4 of the compendium \cite{compendium}.
+The instructions, as in regular MIPS, can be on one of three general formats, R, I and J:
+
+\bigskip
+
+\begin{center}
+    \begin{bytefield}[endianness=big,bitwidth=0.03125\linewidth]{32}
+        \bitheader{0-31} \\
+        \begin{rightwordgroup}{R}
+            \bitbox{6}{Opcode} &
+            \bitbox{5}{Rs} &
+            \bitbox{5}{Rt} &
+            \bitbox{5}{Rd} &
+            \bitbox{5}{Shift}
+            \bitbox{6}{Function}
+        \end{rightwordgroup} \\
+    \end{bytefield}
+\end{center}
+
+\bigskip
+
+\begin{center}
+    \begin{bytefield}[endianness=big,bitwidth=0.03125\linewidth]{32}
+        \bitheader{0-31} \\
+        \begin{rightwordgroup}{I}
+            \bitbox{6}{Opcode} &
+            \bitbox{5}{Rs} &
+            \bitbox{5}{Rt} &
+            \bitbox{16}{Immediate}
+        \end{rightwordgroup} \\
+    \end{bytefield}
+\end{center}
+
+\bigskip
+
+\begin{center}
+    \begin{bytefield}[endianness=big,bitwidth=0.03125\linewidth]{32}
+        \bitheader{0-31} \\
+        \begin{rightwordgroup}{J}
+            \bitbox{6}{Opcode} &
+            \bitbox{26}{Address}
+        \end{rightwordgroup} \\
+    \end{bytefield}
+\end{center}
+
+(Yes, I just included these diagrams to show off with latex, really we can just refer to the reference sheet in the compendium).
+
+The solution processor implements the following instructions:
+
+\begin{table}
+    \begin{tabular}{r|l}
+        \texttt{ADDI} & Add immediate \\
+        \texttt{ADDIU} & Add immediate unsigned \\
+        \texttt{ANDI} & And immediate \\
+        \texttt{BNE} & Branch not equal \\
+        \texttt{LUI} & Load upper immediate \\
+        \texttt{LW} & Load word \\
+        \texttt{ORI} & Or immediate \\
+        \texttt{SLTI} & Set less than immediate \\
+        \texttt{SLTIU} & Set less than immediate unsigned \\
+        \texttt{SW} & Store word \\
+        \texttt{XORI} & Xor immediate \\
+        \texttt{J} & Jump \\
+        \texttt{ADD} & Add \\
+        \texttt{ADDU} & Add unsigned \\
+        \texttt{AND} & And \\
+        \texttt{MULT} & Multiply \\
+        \texttt{MULTU} & Multiply unsigned \\
+        \texttt{NOR} & Nor \\
+        \texttt{OR} & Or \\
+        \texttt{SLL} & Shift left logical \\
+        \texttt{SLLV} & Shift left logical variable \\
+        \texttt{SLT} & Set less than \\
+        \texttt{SLTU} & Set less than unsigned \\
+        \texttt{SRA} & Shift right arithmetic \\
+        \texttt{SRAV} & Shift right arithmetic variable \\
+        \texttt{SRL} & Shift right logical \\
+        \texttt{SRLV} & Shift right logical variable \\
+        \texttt{SUB} & Subtract \\
+        \texttt{SUBU} & Subtract unsigned \\
+        \texttt{XOR} & Xor \\
+        \texttt{PASSTHROUGH} & Passthrough (i.e. send the first input through unmodified) \\
+    \end{tabular}
+    \smallskip
+    \hrule
+    \smallskip
+    \caption{Implemented instructions}
+    \label{table:implemented-instructions}
+\end{table}
+
