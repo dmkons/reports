@@ -31,36 +31,11 @@ In this assignment, each component has an corresponding automatic test bench, wh
 The tests were run in the hardware simulation tool called ISim (TODO: reference ISim version etc).
 See appendix (TODO: appendix numbers) for detailed results of each test bench simulation.
 
-\subsection{Testing on the Spartan-6 FPGA}
+\section{Testing on the Spartan-6 FPGA}
 
 It is also possible to run toplevel test benches directly on the FPGA (I think).
 TODO: write more about this.
 
-\subsection{Energy Efficiency}
+\section{Physical Measurements}
 
-Any computer-related report worth its salt should ontain a section that discusses the energy efficiency of the presented solution.
-This report is no different.
-The solution processor was not designed with energy efficiency as a primary design goal.
-It does, however strive for simplicity in its VHDL design, using official IEEE-reccomended industry standards for as many operations as possible.
-This lets the synthesizer use its intimate knowledge of the feature set of the target FPGA to create customized hardware configurations that exploit the possibilities the FPGA provides.
-This means that dedicated utility slices, block ram sections and similar will be used where possible.
-They are typically faster than their custom logic counterparts, and therefore allow for quicker execution.
-Although quicker execution by virtue of increased clock speeds does not change the energy efficiency of the processor for finite terminating programs, it may allow other dependant components in a larger system to enter low energy states quicker, and thereby reducing static energy loss in the system as a whole.
-
-To make the processor more energy efficient, sleep states could be introduced.
-They allow the processor to enter low energy states when it is not needed, i.e. typically when it is waiting for an external signal in a larger system, and when it has nothing else useful to do.
-
-TODO: insert energy efficiency measurements.
-
-\subsection{Performance}
-
-The presented solution processor performs rather well for a sequential simple multi cycle processor.
-The clock's maximum speed is (TODO: insert max clock speed).
-In testing, it performs reliably in with clock speeds up to X at temperature Y.
-Being a multi-cycle processor, most instructions take more than one cycle to complete.
-Instructions that only operate on immediates and registers take two cycles to complete.
-Instructions that access the data memory require an additional cycle, for a total of three cycles.
-This means that under optimal conditions, the processor is capable of X/2 instructions per second (ref IPS).
-
-To further increase performance, we could introduce instruction-level parallelism in the form of a pipeline.
-This, however, is out of the scope of this exercise.
+TODO: insert energy efficiency measurements, or something.
