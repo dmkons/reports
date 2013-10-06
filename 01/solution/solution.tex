@@ -32,21 +32,65 @@ Once the processor is designed, it must also be verified in a simulation environ
 
 TODO: cite the compendium well enough when there is talk about requirements.
 
-\section{Processor Architecture}
+\section{Solution Architecture}
 
 TODO: an image, box and arrows-style
 
-\subsection{Control Unit}
-\subsection{Program Counter}
-...
-\subsection{(Yes, one subsection per component)}
+\subsection{ALU}
 
+Something about the alu.
+
+\subsection{Control Unit}
+
+The control unit is a finite state machine that controls the processor.
+Its job is to maintain control state across cycles, and distribute the correct control signals to the other components in the processor at the right time.
+The finite state machine has three states: fetch, execute and stall.
+It advances to the next state on every cycle, with transitions as illustrated in figure \ref{figure:control-unit-state-machine}.
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm, semithick]
+            \tikzstyle{every state}=[fill=none,draw=black,text=black]
+            \node[initial,state] (fetch)                    {$fetch$};
+            \node[state]         (execute) [right of=fetch] {$execute$};
+            \node[state]         (stall) [right of=execute] {$stall$};
+            \path (fetch) edge node {} (execute)
+                (execute) edge [bend left] node {non-mem} (fetch)
+                (execute) edge node {mem} (stall)
+                (stall) edge [bend right] node {} (fetch);
+        \end{tikzpicture}
+            \caption{
+                Control unit state machine.
+                \texttt{mem} transitions are taken when the currently executed instruction accesses memory.
+            }
+            \label{figure:control-unit-state-machine}
+    \end{center}
+\end{figure}
+
+TODO: explain the signals that come out of the control unit
+
+\subsection{Program Counter Cycle}
+
+The program counter cycle is the loop the program counter forms together with the branch and jump circuitry.
+The program counter is a D-latch register (TODO: is it?) that holds the address of the next instruction to be fetched.
+When no branching or jumping is involved (the "sunny day scenario"), the program counter cycle increments the program counter by one every cycle the control unit tells it to.
+This means that the control unit has the opportunity to advance the running program.
+The control unit advances the program counter when it is in the execute state, so that a new program counter value is ready for when the control unit enters the fetch state.
+
+When the control unit gives the signal, the program counter may perform a branch or a jump by manipulating the program counter cycle to change the value sent back to the program counter.
+
+TODO: diagram of the program counter cycle.
+
+\subsection{Multiplexer}
+
+The multiplexer... do we even need to talk about it?
 
 \section{Instruction Set Architecture}
 
 The solution processor implements a modified subset of the MIPS instruction set.
 A quick reference of the MIPS instruction set can be found in Figure 3.4 of the compendium \cite{compendium}.
 The instructions, as in regular MIPS, can be on one of three general formats, R, I and J:
+
 
 \bigskip
 
@@ -136,4 +180,3 @@ This is done because (TODO: convincing argument).
     \caption{Implemented instructions}
     \label{table:implemented-instructions}
 \end{table}
-
