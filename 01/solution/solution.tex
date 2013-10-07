@@ -14,7 +14,23 @@ Something about the alu.
 
 \subsection{Branch Controller}
 
-TODO: rune will write about this.
+The branch controller the logic unit that decide whether or not the program should branch.
+It is seperated from the main controller unit, as it works independent from the state machine, and does not need to follow the clock.
+The branch controller read the op code field from the instruction, and if it is a branch instruction it will run the logic that is requiered for that instruction.
+
+To handle the simplest operations that compare two registers to each other, the branch controller can simply look at the flags from the ALU to decide if the branch mux should be enabled.
+Instructions that compare a register to zero require a bit more work from the branch controller.
+The branch controller can send out a zero value that overrides the alus source for the y operand, and is compared to the x operand from the register specified in the instruction.
+
+To allow for other compare operations than $x \geq 0$ and $x < 0$, the zero vaule will not always be zero. 
+Because our CPU only handle integers, we can say that $x \geq 1$ is equivalent with $x > 0$.
+This trick mean that we do not need to support more than zero and negative, and can save quite a bit of complexity in our design without loosing performance.
+Therefore the zero value from the branch controller vary from -1 to 1.
+
+The control unit will assist the branch controller by instructing the ALU to do a subtraction on its inputs, x - y, and discard the result.
+This will set the zero flag of the ALU if the x = y, and the negative flag of the ALU if the x < y.
+It is these flags that is used by the branch controller to detemin if it should branch.
+
 
 \subsection{Control Unit}
 
