@@ -8,18 +8,10 @@ This section presents the different kinds of tests performed.
 
 \section{VHDL Test Benches}
 
-In VHDL, one has the possibility to create test benches to validate VHDL components.
+In VHDL, one has the opportinity to create test benches to validate VHDL components.
 A test bench is a piece of VHDL code that instantiates a component, manipulates its in-signals, and measures the output the component sends out again.
 It is the hardware design analog of unit testing in regular software development.
 These test benches are typically run in simulator software such as ISim or ModelSim, which simulates hardware in an easily measurable and inspectable environment.
-
-VHDL supports a basic \texttt{assert} statement that can be used to programatically compare simulated values against expected results, and with the optional \texttt{report} keyword, additionally print a string to the console fi the assertion fails.
-VHDL's support for automatic non-data-driven unit testing beyond the basic \texttt{assert} statement is rather lacking.
-Specifically, it shows neither the expected value of the assertion, nor the actual value found.
-Because of this, a VHDL package called \texttt{test\_utils} was written.
-It contains a convenient testing function, creatively called \texttt{test}.
-It supports printing expected values and actual found values, as well as a simple tagging and naming system.
-The latter makes it easier to give meaningful names to the different asserts in a test bench.
 
 Generally, each component made in VHDL should have a corresponding test bench.
 Because a component is typically defined in its own file, a common test bench scheme is to have one file, "\texttt{my\_entity.vhd}", which defined the component, and one file, "\texttt{tb\_my\_entity.vhd}", which defines the test bench for the component.
