@@ -55,3 +55,27 @@ Implementing more instructions than the aformentioned is optional.
 The instruction set implemented by the solution processor is detailed in section [THE SECTION ABOUT THE ISA].
 
 Once the processor is designed, it must also be verified in a simulation environment as well as in a hardware platform.
+
+\section{Goals}
+
+For this assignment, a set of solution goals were decided upon, that should be met in addition the the minimal requirements given in the assignment.
+All decisions in the process of completing the assignment were made to further the goals in this section.
+The three solution goals are presented here in order of descending importance.
+
+\subsection{Industry Standards}
+
+The first goal is that, to the extent that is is practically possible, the solution should conform to the current industry standards in aspects such as implementation style, tooling, best practices and so on.
+This goal was chosen because the industry has many, many years of combined experience in the field, and using its accumulated knowledge and wisdom for what it is worth can help increase solution stability, ease of development, and avoiding common pitfalls and gotchas.
+
+\subsection{A Large and Diverse Instruction Set}
+
+The second solution goal is that the solution processor should support as much of the MIPS I instruction set as possible.
+It should ideally behave functionally equivalent as other MIPS I processors.
+The reasoning behind this is that the closer the solution processor resembles a regular MIPS processor, the more can existing tools made for other MIPS processors be used for the solution processor.
+This allows for things like an existing MIPS-supporting C compiler to compile regular C code to run on the solution processor.
+
+\subsection{Performance}
+
+The third and least prioritized solution goal is that the processor should not be slow.
+That means that when an architectural or implementation desicion must be made, the more choice with a more processor performant outcome should be chosen, as long as it does not conflict with the other design goals.
+This means that it is ok to sacrifice processor performance if it means that the processor better conforms to industry standards, or that the processor can support more instruction.
