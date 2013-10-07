@@ -11,32 +11,12 @@ The processor presented as a solution for assignment 1 in this report is a 32-bi
 
 \subsection{ALU}
 
-Something about the alu.
-
-\subsection{Branch Controller}
-
-The branch controller the logic unit that decide whether or not the program should branch.
-It is seperated from the main controller unit, as it works independent from the state machine, and does not need to follow the clock.
-The branch controller read the op code field from the instruction, and if it is a branch instruction it will run the logic that is requiered for that instruction.
-
-To handle the simplest operations that compare two registers to each other, the branch controller can simply look at the flags from the ALU to decide if the branch mux should be enabled.
-Instructions that compare a register to zero require a bit more work from the branch controller.
-The branch controller can send out a zero value that overrides the alus source for the y operand, and is compared to the x operand from the register specified in the instruction.
-
-To allow for other compare operations than $x \geq 0$ and $x < 0$, the zero vaule will not always be zero. 
-Because our CPU only handle integers, we can say that $x \geq 1$ is equivalent with $x > 0$.
-This trick mean that we do not need to support more than zero and negative, and can save quite a bit of complexity in our design without loosing performance.
-Therefore the zero value from the branch controller vary from -1 to 1.
-
-The control unit will assist the branch controller by instructing the ALU to do a subtraction on its inputs, x - y, and discard the result.
-This will set the zero flag of the ALU if the x = y, and the negative flag of the ALU if the x < y.
-It is these flags that is used by the branch controller to detemin if it should branch.
-
+Something about the alu. We could mention that we rewrote it because of reasons?
 
 \subsection{Control Unit}
 
 The control unit is a finite state machine that controls the processor.
-Its job is to maintain control state across cycles, and distribute the correct control signals to the other components in the processor at the right time.
+Its job is to maintain the control state across cycles, and distribute the correct control signals to the other components in the processor at the right time.
 The finite state machine has three states: fetch, execute and stall.
 It advances to the next state on every cycle, with transitions as illustrated in figure \ref{figure:control-unit-state-machine}.
 
@@ -62,6 +42,44 @@ It advances to the next state on every cycle, with transitions as illustrated in
 
 TODO: explain the signals that come out of the control unit
 
+Here is a list for now populated by the signal names and Odd's educated guesses and brief explanations of the obvious.
+
+\subsubsection{ALU Source}
+The control signal for the ALU Source MUX. If 1 then the MUX selects the output from Sign Extend, if 0 it selects the signal from Read Data 2 in the Registers block.
+
+\subsubsection{Register Write}
+Does this turn on if we are writing to a register?
+
+\subsubsection{Register Destination}
+If 1 then the the Register Destination MUX outputs bits 15-11 of the instruction. If 0 then it outputs bits 20-16 of the instruction. Either way it feeds this to the Write Register port on the Registers block.
+
+\subsubsection{Memory to Register}
+Is this like, fetch? Are we putting memory in the registers?
+
+\subsubsection{Memory Write}
+I guess this is set if the instruction writes to memory?
+
+\subsubsection{Jump}
+The Jump signal indicates whether or not the current instruction is a jump instruction. If it is, the Jump signal is set to $1$ which causes the Jump MUX to output the Jump Address signal from Concat.
+
+\subsection{Branch Controller}
+
+The branch controller is the logic unit that decide whether or not the program should branch.
+It is seperated from the main controller unit, as it works independently from the state machine (see Figure \ref{figure:control-unit-state-machine}, and does not need to follow the clock.
+The branch controller reads the opcode field from the instruction, and if it is a branch instruction it will run the logic that is requiered for that instruction.
+
+To handle the simplest operations that compare two registers to each other, the branch controller can simply look at the flags from the ALU to decide if the branch mux should be enabled.
+Instructions that compare a register to zero require a bit more work from the branch controller.
+The branch controller can send out a zero value that overrides the alus source for the y operand, and is compared to the x operand from the register specified in the instruction.
+
+To allow for other compare operations than $x \geq 0$ and $x < 0$, the zero vaule will not always be zero. 
+Because our CPU only handle integers, we can say that $x \geq 1$ is equivalent with $x > 0$.
+This trick mean that we do not need to support more than zero and negative, and can save quite a bit of complexity in our design without loosing performance.
+Therefore the zero value from the branch controller vary from -1 to 1.
+
+The control unit will assist the branch controller by instructing the ALU to do a subtraction on its inputs, x - y, and discard the result.
+This will set the zero flag of the ALU if the x = y, and the negative flag of the ALU if the x < y.
+It is these flags that is used by the branch controller to detemin if it should branch.
 \subsection{Program Counter Cycle}
 
 The program counter cycle is the loop the program counter forms together with the branch and jump circuitry.
