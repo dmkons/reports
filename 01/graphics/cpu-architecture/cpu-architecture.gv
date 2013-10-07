@@ -1,0 +1,14 @@
+digraph graphname {
+    Registers [shape=box];
+    PC [shape=box];
+    "Instruction Memory" [shape="box"];
+    "Add1" [shape=trapezium];
+    "Control Unit" [shape="circle"];
+    "MUX_Shift_Swap" [shape="Mrecord"];
+
+    PC -> "Instruction Memory";
+    PC -> "Add1";
+    
+    "Instruction Memory" -> Registers [label="Instruction[25-21]"];
+    "Instruction Memory" -> "|edgelabel|*" [label="|Instruction[20-16]|*" label_scheme="1" labelfontcolor="red"]; 
+ }
