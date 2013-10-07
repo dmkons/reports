@@ -1,14 +1,15 @@
-digraph graphname {
-    Registers [shape=box];
-    PC [shape=box];
-    "Instruction Memory" [shape="box"];
-    "Add1" [shape=trapezium];
-    "Control Unit" [shape="circle"];
-    "MUX_Shift_Swap" [shape="Mrecord"];
+    digraph graphname {
+        node [shape=record];
+        PC [shape=box];
+        "Instruction Memory" [label="{<f3>Instruction Memory | <f0> Read address | <f1> Instruction [31-0]}"];
+        "Add1" [shape="trapezium"];
+        "Control Unit" [shape="circle"];
+        "MUX_Shift_Swap" [shape="Mrecord"];
+        "Registers" [label="{ <f0> Registers | {{<f1> Read register 1 | <f2> Read register 2 | <f3> Write register | <f4> Write data } | {<f5> Read data 1 | <f6> Read data 2}} }"];
 
-    PC -> "Instruction Memory";
-    PC -> "Add1";
-    
-    "Instruction Memory" -> Registers [label="Instruction[25-21]"];
-    "Instruction Memory" -> "|edgelabel|*" [label="|Instruction[20-16]|*" label_scheme="1" labelfontcolor="red"]; 
- }
+        PC -> "Instruction Memory":f0;
+        PC -> "Add1";
+        
+        "Instruction Memory" -> Registers [label="Instruction[25-21]"];
+        "Instruction Memory" -> "|edgelabel|*" [label="|Instruction[20-16]|*" label_scheme="1" labelfontcolor="red"]; 
+     }
