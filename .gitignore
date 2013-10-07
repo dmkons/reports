@@ -1,7 +1,8 @@
 # generated files
 *.aux
 *.log
-*.pdf
+/01/*.pdf
+/02/*.pdf
 *.synctex.gz
 *.bbl
 *.blg
