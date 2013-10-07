@@ -9,7 +9,7 @@ This chapter discusses the performance and test results of the presented solutio
 Did we meed the goal about conforming to industry standards?
 What are the industry standards?
 
-\subsection{\texttt{numeric\_std}
+\subsection{\texttt{numeric\_std}}
 
 TODO: Someone write about the \texttt{numeric\_std} debacle here.
 Read here for details, and kok a nice and long summary: http://vhdlguru.blogspot.no/2010/03/why-library-numericstd-is-preferred.html .
@@ -22,6 +22,11 @@ Do we have tests for everything?
 
 TODO: Lets google some stuff and shoehorn it into this report.
 
+\section{Instruction Set}
+
+To what extent did we meet the design goal of having a large instruction set?
+Was it a good idea to choose this as a design goal? (Hint: no).
+
 \section{Performance}
 
 The presented solution processor performs rather well for a sequential simple multi cycle processor.
@@ -31,6 +36,10 @@ Being a multi-cycle processor, most instructions take more than one cycle to com
 Instructions that only operate on immediates and registers take two cycles to complete.
 Instructions that access the data memory require an additional cycle, for a total of three cycles.
 This means that under optimal conditions, the processor is capable of X/2 instructions per second (ref IPS).
+
+One way of increasing performance beyond what has been done in the solution is to restructure the logical flow of the architecture to keep the data flow dependencies to a minimum.
+Doing so would mean that the processor would need less time to stabilize for each cycle, and as an effect, the clock cycle speed could be increased.
+As we all remember from Intel and AMD marketing in the early 2000's, more MHz means more power!
 
 To further increase performance, we could introduce instruction-level parallelism in the form of a pipeline.
 This, however, is out of the scope of this exercise.
@@ -57,3 +66,4 @@ also we could just go through our logs and see what we actually did and in what 
 
 THAT'S WHAT LOGS ARE FOR, YEAH.
 
+TODO: attach an appendix of all the raw logs?
