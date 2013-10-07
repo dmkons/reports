@@ -1,5 +1,5 @@
 digraph graphname {
-    graph [rankdir="LR" ]; //splines="ortho"
+    graph [rankdir="LR" overlap="scale"]; //splines="ortho"
     node [shape=record];
 
 
@@ -15,7 +15,7 @@ digraph graphname {
     "Concat" [shape="circle"];
     "Sign Extend" [ shape="circle" label="sign\n extend"];
 
-    "Control Unit" [label="<f0> Control Unit | {{<alusource> ALU source | <regwrite> register write | <regdest> register destination | <inst> Instruction} | {<memtoreg> Memory to register | <memw> Memory write | <jump> jump}}"];
+    "Control Unit" [label="<f0> Control Unit | {{ <inst> Instruction} | {<alusource> ALU source | <regwrite> register write | <regdest> register destination | <memtoreg> Memory to register | <memw> Memory write | <jump> jump}}"];
     "Branch Controller" [label="<f0> Branch Controller | {{<opcode> opcode | <negative> negative | <zero> zero } | { <branch> branch | <zerooverride> zero override enable | <value> value }}"];
 
     "ALU" [label="<f0> ALU | {{<x> X | <y> Y} | {<r> R}}"];
@@ -29,12 +29,12 @@ digraph graphname {
     // 1 on top, 0 on bottom
     // control signal is middle-left
     // output is middle-right
-    "Register Destination MUX" [shape="Mrecord" label="<1> 1 | { <control> | <out> } | <0> 0" xlabel="MUX_reg_dest"];
-    "ALU Source MUX" [shape="Mrecord" label="<1> 1 | { <control> | <out> } | <0> 0" xlabel="MUX_alu_src"];
-    "Branch MUX" [shape="Mrecord" label="<1> 1 | { <control> | <out> } | <0> 0" xlabel="MUX_branch"];
-    "Jump MUX" [shape="Mrecord" label="<1> 1 | { <control> | <out> } | <0> 0" xlabel="MUX_jmp"];
-    "Memory to Register MUX" [shape="Mrecord" label="<1> 1 | { <control> | <out> } | <0> 0" xlabel="MUX_mem_to_reg"];
-    "Zero Override MUX" [shape="Mrecord" label="<1> 1 | { <control> | <out> } | <0> 0" xlabel="MUX_zero_override"]
+    "Register Destination MUX" [shape="Mrecord" label="<1> 1 | { <control> ctrl | <out> out } | <0> 0" xlabel="MUX_reg_dest"];
+    "ALU Source MUX" [shape="Mrecord" label="<1> 1 | { <control> ctrl | <out> out } | <0> 0" xlabel="MUX_alu_src"];
+    "Branch MUX" [shape="Mrecord" label="<1> 1 | { <control> ctrl | <out> out } | <0> 0" xlabel="MUX_branch"];
+    "Jump MUX" [shape="Mrecord" label="<1> 1 | { <control> ctrl | <out> out } | <0> 0" xlabel="MUX_jmp"];
+    "Memory to Register MUX" [shape="Mrecord" label="<1> 1 | { <control> ctrl | <out> out } | <0> 0" xlabel="MUX_mem_to_reg"];
+    "Zero Override MUX" [shape="Mrecord" label="<1> 1 | { <control> ctrl | <out> out } | <0> 0" xlabel="MUX_zero_override"]
 
     // was this removed from the design?
 //    "Shift Swap MUX" [shape="Mrecord" label="<1> 1 | { <control> | <out> }| <0> 0" xlabel="MUX_shift_swap"];
