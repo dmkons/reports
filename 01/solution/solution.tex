@@ -65,21 +65,22 @@ The Jump signal indicates whether or not the current instruction is a jump instr
 \subsection{Branch Controller}
 
 The branch controller is the logic unit that decide whether or not the program should branch.
-It is seperated from the main controller unit, as it works independently from the state machine (see Figure \ref{figure:control-unit-state-machine}, and does not need to follow the clock.
+It is seperated from the main controller unit, as it works independently from the state machine (see Figure \ref{figure:control-unit-state-machine} and does not need to follow the clock.
 The branch controller reads the opcode field from the instruction, and if it is a branch instruction it will run the logic that is requiered for that instruction.
 
 To handle the simplest operations that compare two registers to each other, the branch controller can simply look at the flags from the ALU to decide if the branch mux should be enabled.
 Instructions that compare a register to zero require a bit more work from the branch controller.
-The branch controller can send out a zero value that overrides the alus source for the y operand, and is compared to the x operand from the register specified in the instruction.
+The branch controller can send out a zero value that overrides the ALUs source for the y operand, and is compared to the x operand from the register specified in the instruction.
 
 To allow for other compare operations than $x \geq 0$ and $x < 0$, the zero vaule will not always be zero. 
-Because our CPU only handle integers, we can say that $x \geq 1$ is equivalent with $x > 0$.
-This trick mean that we do not need to support more than zero and negative, and can save quite a bit of complexity in our design without loosing performance.
-Therefore the zero value from the branch controller vary from -1 to 1.
+Because the solution processor can only handle integers, $x \geq 1$ can be said to be equivalent with $x > 0$.
+This trick means that there is no need to support more than zero and negative (TODO: ZERO AND NEGATIVE WHAT?), and can save quite a bit of complexity in our design without losing performance.
+Therefore the zero value from the branch controller varies from -1 to 1. (TODO: WHAT?)
 
-The control unit will assist the branch controller by instructing the ALU to do a subtraction on its inputs, x - y, and discard the result.
-This will set the zero flag of the ALU if the x = y, and the negative flag of the ALU if the x < y.
-It is these flags that is used by the branch controller to detemin if it should branch.
+The control unit will assist the branch controller by instructing the ALU to do a subtraction on its inputs, $x - y$, and discard the result.
+This will set the zero flag of the ALU if the $x = y$, and the negative flag of the ALU if the $x < y$.
+These flags are used by the branch controller to determine whether it should branch or not.
+
 \subsection{Program Counter Cycle}
 
 The program counter cycle is the loop the program counter forms together with the branch and jump circuitry.
