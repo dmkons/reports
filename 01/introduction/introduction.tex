@@ -3,23 +3,28 @@ brings.
 Also, it gives a brief introduction to how the task was approached and in which way the solution was reached.
 
 
-This report presents a solution to "Assignment \#1 - Simple Multi-cycle MIPS Processor" of the autumn 2013 course TDT4255 at NTNU.
+This report presents a solution to ``Assignment \#1 - Simple Multi-cycle MIPS Processor'' of the autumn 2013 course TDT4255 at NTNU.
 
 \section{Assignment}
 
-A summery of the assignment can be found in section 4.1 of the compendium\cite{compendium}, and is reproduced below for convenience:
+A summery of the assignment can be found in section 4.1 of the compendium~\cite[p.114]{compendium}, and is reproduced below for convenience:
 
 \begin{quote}
-"In this assignment, you will design a simple multi-cycle MIPS processor in VHDL and synthesize your design by following the procedure described in Chapter 2 [of the compendium\cite{compendium}].
+"In this assignment, you will design a simple multi-cycle MIPS processor in VHDL and synthesize your design by following the procedure described in Chapter 2~\cite[of the compendium]{compendium}.
 You will also verify the behaviour of the implemented MIPS processor using the ModelSim simulator.
-Once your design is verified, you will integrate the MIPS processor into a MicroBlaze-based embedded system as a peripheral core, implement the embedded system design in FPGA\footnote{It is assumed that the assignment author means "VHDL" here} and the designed processor in an FPGA."
+Once your design is verified, you will integrate the MIPS processor into a MicroBlaze-based embedded system as a peripheral core, implement the embedded system design in FPGA\footnote{It was assumed that the assignment author means "VHDL" here} and the designed processor in an FPGA."
 \end{quote}
 
 \subsection{Requirements}
 
-The requirements for the assignment is to design a simple multi-cycle MIPS architecture.
-It must be based around the suggested MIPS-like architecture in Figure 4.1 of the course compendium\cite{compendium}.
-Minimally, the 10 insructions in table \ref{table:required-instructions} must be implemented.
+The assignment's main requirement is to design a ``simple multi-cycle MIPS architecture''~\cite[p.114]{compendium}. It must be based on the suggested MIPS-like architecture presented in Figure 4.1~\cite[p.115]{compendium} in the course compendium.
+
+Minimally, the instructions from a given set of instruction classes have to be implemented. 
+Examination of the list yielded 10 instructions that were deemed a part of the minimum requirement.
+These are listed in Table \ref{table:required-instructions}.
+
+Note: the assignment text required the \texttt{LDI} (Load Upper Immediate) instruction to be implemented. However in MIPS, the Load Upper Immediate function is ``\texttt{LUI}'' and was implemented instead of the non-existant ``\texttt{LDI}'' as its description is ``Load Upper Immediate''~\cite[p.129]{mips32-instruction-set}.
+
 
 \begin{table}
     \begin{center}
@@ -28,7 +33,7 @@ Minimally, the 10 insructions in table \ref{table:required-instructions} must be
             \texttt{AND} & And \\
             \texttt{BEQ} & Branch if equal \\
             \texttt{J} & Jump \\
-            \texttt{LDI}\footnote{\texttt{LDI} is not actually a MIPS instruction, but it is assumed that it is interchangeable with \texttt{LUI}} & Load immediate \\
+            \texttt{LUI} & Load immediate \\
             \texttt{LW} & Load word \\
             \texttt{OR} & Or \\
             \texttt{SLT} & Set less than \\
@@ -38,14 +43,15 @@ Minimally, the 10 insructions in table \ref{table:required-instructions} must be
         \end{tabular}
         \smallskip
         \smallskip
-        \caption{Required instructions}
+        \caption{Required instructions.}
         \label{table:required-instructions}
     \end{center}
 \end{table}
 
-Optionally, more instructions can be implemented.
+Implementing more instructions than the aformentioned is optional.
 The instruction set implemented by the solution processor is detailed in section [THE SECTION ABOUT THE ISA].
 
 Once the processor is designed, it must also be verified in a simulation environment as well as in a hardware platform.
 
 TODO: cite the compendium well enough when there is talk about requirements.
+% naw man I got yo back, shit's cited through the roof.
