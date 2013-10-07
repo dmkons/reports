@@ -1,5 +1,5 @@
 digraph graphname {
-    graph [rankdir="LR" overlap="scale"]; //splines="ortho"
+    graph [rankdir="LR" overlap="false" splines="true"]; //splines="ortho"
     node [shape=record];
 
 
@@ -68,7 +68,11 @@ digraph graphname {
     "Instruction Memory":inst -> "Sign Extend" [label="16" arrowhead="rcrowlvee"];
     "Instruction Memory":inst -> "Branch Controller":opcode [label="Inst[31-26]"];
 
-    "Sign Extend" -> Add2:in2 [label="32" arrowhead="rcrowlvee"];
+    "Sign Extend" -> SignExtendHolder [label="32" arrowhead="rcrowlvee"];
+    // invisible node trick!
+    "SignExtendHolder" [shape="circle" width="0.01" height="0.01" label=""];
+    SignExtendHolder -> Add2:in2;
+    SignExtendHolder -> "ALU Source MUX":1;
 
     "Registers":"readdata1" -> "ALU":x;
     "Registers":"readdata2" -> "ALU Source MUX":0;
