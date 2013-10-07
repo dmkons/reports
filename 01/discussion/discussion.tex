@@ -4,6 +4,36 @@ what could have been done better, which way you would choose to go if given the 
 
 This chapter discusses the performance and test results of the presented solution processor, as well as the assignment it self and the work process around it.
 
+\section{Industry Standards}
+
+Did we meed the goal about conforming to industry standards?
+What are the industry standards?
+
+\subsection{\texttt{numeric\_std}
+
+TODO: Someone write about the \texttt{numeric\_std} debacle here.
+Read here for details, and kok a nice and long summary: http://vhdlguru.blogspot.no/2010/03/why-library-numericstd-is-preferred.html .
+
+\subsection{Test coverage}
+
+Do we have tests for everything?
+
+\subsection{Additional industry standards?}
+
+TODO: Lets google some stuff and shoehorn it into this report.
+
+\section{Performance}
+
+The presented solution processor performs rather well for a sequential simple multi cycle processor.
+The clock's maximum speed is (TODO: insert max clock speed).
+In testing, it performs reliably in with clock speeds up to X at temperature Y.
+Being a multi-cycle processor, most instructions take more than one cycle to complete.
+Instructions that only operate on immediates and registers take two cycles to complete.
+Instructions that access the data memory require an additional cycle, for a total of three cycles.
+This means that under optimal conditions, the processor is capable of X/2 instructions per second (ref IPS).
+
+To further increase performance, we could introduce instruction-level parallelism in the form of a pipeline.
+This, however, is out of the scope of this exercise.
 
 \section{Energy Efficiency}
 
@@ -19,21 +49,6 @@ Although quicker execution by virtue of increased clock speeds does not change t
 To make the processor more energy efficient, sleep states could be introduced.
 They allow the processor to enter low energy states when it is not needed, i.e. typically when it is waiting for an external signal in a larger system, and when it has nothing else useful to do.
 
-
-\section{Performance}
-
-The presented solution processor performs rather well for a sequential simple multi cycle processor.
-The clock's maximum speed is (TODO: insert max clock speed).
-In testing, it performs reliably in with clock speeds up to X at temperature Y.
-Being a multi-cycle processor, most instructions take more than one cycle to complete.
-Instructions that only operate on immediates and registers take two cycles to complete.
-Instructions that access the data memory require an additional cycle, for a total of three cycles.
-This means that under optimal conditions, the processor is capable of X/2 instructions per second (ref IPS).
-
-To further increase performance, we could introduce instruction-level parallelism in the form of a pipeline.
-This, however, is out of the scope of this exercise.
-
-
 \section{About the Work Process}
 
 TODO: bla bla, we should have started sooner, yadda yadda, could have done more etc, happy with final outcome.
@@ -41,3 +56,4 @@ TODO: bla bla, we should have started sooner, yadda yadda, could have done more 
 also we could just go through our logs and see what we actually did and in what order.
 
 THAT'S WHAT LOGS ARE FOR, YEAH.
+
