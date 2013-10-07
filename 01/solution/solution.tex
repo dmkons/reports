@@ -85,7 +85,7 @@ These flags are used by the branch controller to determine whether it should bra
 
 The program counter cycle is the loop the program counter forms together with the branch and jump circuitry.
 The program counter is a D-latch register (TODO: is it?) that holds the address of the next instruction to be fetched.
-When no branching or jumping is involved (the "sunny day scenario"), the program counter cycle increments the program counter by one every cycle the control unit tells it to.
+When no branching or jumping is involved (the ``sunny day scenario''), the program counter cycle increments the program counter by one every cycle the control unit tells it to.
 This means that the control unit has the opportunity to advance the running program.
 The control unit advances the program counter when it is in the execute state, so that a new program counter value is ready for when the control unit enters the fetch state.
 
