@@ -1,15 +1,53 @@
-    digraph graphname {
-        node [shape=record];
-        PC [shape=box];
-        "Instruction Memory" [label="{<f3>Instruction Memory | <f0> Read address | <f1> Instruction [31-0]}"];
-        "Add1" [shape="trapezium"];
-        "Control Unit" [shape="circle"];
-        "MUX_Shift_Swap" [shape="Mrecord"];
-        "Registers" [label="{ <f0> Registers | {{<f1> Read register 1 | <f2> Read register 2 | <f3> Write register | <f4> Write data } | {<f5> Read data 1 | <f6> Read data 2}} }"];
+digraph graphname {
+    graph [rankdir="LR" ]; //splines="ortho"
+    node [shape=record];
 
-        PC -> "Instruction Memory":f0;
-        PC -> "Add1";
-        
-        "Instruction Memory" -> Registers [label="Instruction[25-21]"];
-        "Instruction Memory" -> "|edgelabel|*" [label="|Instruction[20-16]|*" label_scheme="1" labelfontcolor="red"]; 
-     }
+    "PC" [height="1.5" label="<f0> PC | {<in> PC_in | <out> PC_out }"];
+
+    "Add1" [xlabel="adder" label="{{<in1> in | <in2> in} | <out> +}}"]; //in1 should get rendered as the top one
+    "Add2" [xlabel="adder" label="{{<in1> in | <in2> in} | <out> +}}"];
+    "Concat" [shape="circle"];
+    "Sign extend" [shape="circle" label="sign extend"];
+
+    "Control Unit" [label="<f0> Control Unit | {{<alusrc> ALU source | <regwr> register write | <regd> register destination | <inst> Instruction} | {<memtoreg> Memory to register | <memw> Memory write | <jump> jump}}"];
+    "Branch Controller" [label="<f0> Branch Controller | {{<opcode> opcode | <negative> negative | <zero> zero } | { <branch> branch | <zerooverride> zero override enable | <value> value }}"];
+
+    "ALU" [label=""];
+
+    "Registers" [label="<f0> Registers | {{<f1> Read register 1 | <f2> Read register 2 | <f3> Write register | <f4> Write data | <regwrite> register write} | {<f5> Read data 1 | <f6> Read data 2}} "];
+
+    "Instruction Memory" [label=" <f3>Instruction Memory | {<f0> read address | <f1> Instruction [31-0]}"];
+    "Data Memory" [label=" <f0> Data Memory | {{ <f1> address | <f2> write data } | {<f3> read data} }}"];
+
+    // MUX layout:
+    // 
+    "Shift Swap MUX" [shape="Mrecord" label="<1> 1 | <out> | <0> 0" xlabel="MUX_shift_swap"];
+    "Register Destination MUX" [shape="Mrecord" label="<1> 1 | <out> | <0> 0" xlabel="MUX_reg_dest"];
+    "ALU Source MUX" [shape="Mrecord" label="<1> 1 | <out> | <0> 0" xlabel="MUX_alu_src"];
+    "Branch MUX" [shape="Mrecord" label="<1> 1 | <out> | <0> 0" xlabel="MUX_branch"];
+    "Jump MUX" [shape="Mrecord" label="<1> 1 | <out> | <0> 0" xlabel="MUX_jmp"];
+    "Memory to Register MUX" [shape="Mrecord" label="<1> 1 | <out> | <0> 0" xlabel="MUX_mem_to_reg"];
+    "Zero Override MUX" [shape="Mrecord" label="<1> 1 | <out> | <0> 0" xlabel="MUX_zero_override"]
+
+    // signals!
+    PC:out -> "Instruction Memory":f0;
+    PC:out -> "Add1":in1;
+    // need to hack the '1' in on the first adder somehow
+
+    Add1:out -> Concat [label="PC[31-26]"];
+    Add1:out -> Add2:in1;
+    Add1:out -> "Branch MUX":0;
+
+    Add2:out -> "Branch MUX":1;
+
+    "Branch MUX":out -> "Jump MUX":0;
+
+
+
+
+    PC -> "Instruction Memory":f0;
+    PC -> "Add1":in1;
+    
+    "Instruction Memory" -> Registers [label="Instruction[25-21]"];
+    "Instruction Memory" -> "|edgelabel|*" [label="|Instruction[20-16]|*" label_scheme="1" labelfontcolor="red"]; 
+ }
