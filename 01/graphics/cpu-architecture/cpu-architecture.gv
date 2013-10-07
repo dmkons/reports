@@ -92,5 +92,5 @@ digraph graphname {
     "Control Unit":memw -> "Data Memory":memwrite;
     "Control Unit":memtoreg -> "Memory to Register MUX":control;
 
-    "Concat" -> "Jump MUX":1;
+    "Concat" -> "Jump MUX":1 [label="Jump Address[31-0]"];
  }
