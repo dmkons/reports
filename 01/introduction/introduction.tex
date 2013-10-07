@@ -30,7 +30,7 @@ These are listed in Table \ref{table:required-instructions}.
             \texttt{AND} & And \\
             \texttt{BEQ} & Branch if equal \\
             \texttt{J} & Jump \\
-            \texttt{LUI} & Load immediate \\
+            \texttt{LDI}/\texttt{LLI} & Load (lower) immediate \\
             \texttt{LW} & Load word \\
             \texttt{OR} & Or \\
             \texttt{SLT} & Set less than \\
@@ -45,7 +45,11 @@ These are listed in Table \ref{table:required-instructions}.
     \end{center}
 \end{table}
 
-Note: the assignment text required the \texttt{LDI} (Load Upper Immediate) instruction to be implemented. However in MIPS, the Load Upper Immediate function is ``\texttt{LUI}'' and was implemented instead of the non-existant ``\texttt{LDI}'' as its description is ``Load Upper Immediate''~\cite[p.129]{mips32-instruction-set}.
+Note: the assignment text required the \texttt{LDI} (Load Immediate) instruction to be implemented.
+However in MIPS, \texttt{LDI} is not an instruction.
+The closest match in MIPS is the instruction called \texttt{LUI} (Load Upper Immedate).
+This instruction loads an immediate, but also shifts it to put it in the upper half of the destination register.
+As LUI does not do exactly what LDI would have done, a new instruction \texttt{LLI} (Load Lower Immediate), takes \texttt{LDI}'s place in the instruction requirements table.
 
 Implementing more instructions than the aformentioned is optional.
 The instruction set implemented by the solution processor is detailed in section [THE SECTION ABOUT THE ISA].
