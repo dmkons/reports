@@ -16,7 +16,7 @@ All the other settings (all were tested) showed no difference, and they were kep
 
 \section{Energy Efficiency}
 
-Because the processor has not been successfully run on an FPGA, it is diffucult to perform meaningful energy efficiency testing.
+Because the processor has not been successfully run on an FPGA, it is difficult to perform meaningful energy efficiency testing.
 However, ISE provides a ``Generate Power Data'' process, which can be used to assess ballpark measurements.
 Table \vref{table:power-data} shows generated power data.
 The synthesis process offers a setting called ``Power Reduction''.
@@ -76,7 +76,7 @@ Vcco25 & 2.500 & 0.00 & 0.00 & 0.00 \\
 
 \section{VHDL Test Benches}
 
-In VHDL, one has the opportinity to create test benches to validate VHDL components.
+In VHDL, one has the opportunity to create test benches to validate VHDL components.
 A test bench is a piece of VHDL code that instantiates a component, manipulates its in-signals, and measures the resulting output the component sends out again.
 It is the hardware design analog of unit testing in regular software development.
 These test benches are typically run in simulator software such as ISim or ModelSim, which simulates hardware in an easily measurable and inspectable environment.
@@ -97,11 +97,11 @@ This is because of its involvement in the branch operations.
 
 \subsection{Branch Controller Test Bench}
 
-The branch controller is a logical unit that will continuously determin if the ALU should compare to a zero value and whether or not to branch.
+The branch controller is a logical unit that will continuously determine if the ALU should compare to a zero value and whether or not to branch.
 The test will check each branching operation and test that the compare\_zero and compare\_zero\_value have the correct values.
 The test will also check each of these operations with their sensitive flag on and off, and test that branch have the right value.
 For good measure we also check that all values are set \texttt{to} 0 when the operation is not a branching operation.
-This last test is not really nesseccary in the current processor layout as the branching mux will remove the signal eventually.
+This last test is not really necessary in the current processor layout as the branching MUX will remove the signal eventually.
 
 \subsection{MUX Test Bench}
 
@@ -111,7 +111,7 @@ The test puts two different signals on the input ports and reads each of these t
 \subsection{PC Test Bench}
 
 The program counter have several inputs which on each rising edge on the clock will reevaluate what value to put out of the program counter.
-There are several ways the programcounter can act:
+There are several ways the program counter can act:
 \begin{itemize}
 \item{If reset is set to \texttt{1}, it will reset pc\_out to \texttt{0}.}
 \item{If both pc enable and reset is set to \texttt{1}, it should still reset.}

@@ -43,7 +43,7 @@ These are listed in Table \vref{table:required-instructions}.
 
 Note: the assignment text required the ``\texttt{LDI} (Load Upper Immediate)''\footnote{Verbatim from \cite[p.114]{compendium}} instruction to be implemented.
 However in MIPS, \texttt{LDI} is not an instruction.
-The closest match in MIPS is the instruction called \texttt{LUI} (Load Upper Immedate)\footnote{Verbatim from \cite[p.114]{mips-instruction-set}}.
+The closest match in MIPS is the instruction called \texttt{LUI} (Load Upper Immediate)\footnote{Verbatim from \cite[p.114]{mips-instruction-set}}.
 This instruction loads an immediate, but also shifts it to put it in the upper half of the destination register.
 As LUI does not do exactly what LDI would have done, a new instruction \texttt{LLI} (Load Lower Immediate), takes \texttt{LDI}'s place in the instruction requirements table.
 
@@ -54,7 +54,7 @@ Once the processor is designed, it must also be verified in a simulation environ
 
 \section{Goals}
 
-For this assignment, a set of solution goals were decided upon that should be met in to addition the the minimal requirements given in the assignment.
+For this assignment, a set of solution goals were decided upon that should be met in to addition the minimal requirements given in the assignment.
 All decisions made in the process of completing the assignment were to further the goals in this section.
 The three solution goals are presented here in order of descending importance detailed.
 
@@ -75,6 +75,6 @@ This would allows for things like an existing MIPS-supporting C compiler to comp
 \subsection{Performance} \label{sec:goals-performance}
 
 The third and least prioritized solution goal is that the processor should not be slow.
-That means that when an architectural or implementation desicion must be made, the choice with a more processor performant outcome should be chosen, as long as it does not conflict with the other design goals.
-This means that it is ok to sacrifice processor performance if doing so results in better conformance to industry standards or support for more instructions.
+That means that when an architectural or implementation decision must be made, the choice with a more processor performant outcome should be chosen, as long as it does not conflict with the other design goals.
+This means that it is OK to sacrifice processor performance if doing so results in better conformance to industry standards or support for more instructions.
 

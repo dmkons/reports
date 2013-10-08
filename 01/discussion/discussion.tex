@@ -5,7 +5,7 @@ This chapter discusses the performance and test results of the presented solutio
 The assignment's main requirement, which was to implement a ``simple multi-cycle MIPS architecture''~\cite[p.114]{compendium}, was met.
 It was based on a suggested MIPS-like architecture presented in Figure 4.1~\cite[p.115]{compendium} in the course compendium, as was required.
 The required instructions (see table \vref{table:required-instructions}) have been implemented for the processor, as well as a vast array of additional and more complex instructions (see figure \vref{table:implemented-instructions}.
-The processor was exensively tested at different levels of abstraction in several simulation environments, which was a requirement that was met.
+The processor was extensively tested at different levels of abstraction in several simulation environments, which was a requirement that was met.
 Finally, the processor was to be tested on a hardware platform.
 This requirement was not met.
 
@@ -32,7 +32,7 @@ IEEE has countered this problem by defining new standard packages called \texttt
 This ensures compatibility across VHDL tools from different vendors.
 
 \texttt{Numeric\_std} has a number of advantages over \texttt{std\_logic\_arith}.
-The biggest advantage is that it defines new types for arithmetical logcal vectors, \texttt{signed} and \texttt{unsigned}, as opposed to trying to use \texttt{std\_logic\_vector} directly, which is what the Synopsis packages do.
+The biggest advantage is that it defines new types for arithmetical logical vectors, \texttt{signed} and \texttt{unsigned}, as opposed to trying to use \texttt{std\_logic\_vector} directly, which is what the Synopsis packages do.
 This is an advantage because combining signed and unsigned arithmetic on the same signals becomes a lot easier.
 In fact, the Synopsis packages simply assumes all operands are unsigned in all arithmetic operations, which is a bad idea.
 A different advantage with the standard packages is that they provide stronger quality assurance through type checking, as they introduce new types.
@@ -69,21 +69,21 @@ This means that under optimal conditions, the processor is theoretically capable
 
 One way of increasing performance beyond what has been done in the solution is to restructure the logical flow of the architecture to keep the data flow dependencies to a minimum.
 Doing so would mean that the processor would need less time to stabilize for each cycle, and as an effect, the clock cycle speed could be increased.
-As we all remember from Intel and AMD marketing in the early 2000's: more MHz means more power!
+As we all remember from Intel and AMD marketing in the early 2000s: more MHz means more power!
 
 To further increase performance, we could introduce instruction-level parallelism in the form of a pipeline.
 This, however, is out of the scope of this exercise.
 
 \section{Energy Efficiency}
 
-Any computer-related report worth its salt should ontain a section that discusses the energy efficiency of the presented solution.
+Any computer-related report worth its salt should contain a section that discusses the energy efficiency of the presented solution.
 This report is no different.
 The solution processor was not designed with energy efficiency as a primary design goal.
-It does, however strive for simplicity in its VHDL design, using official IEEE-reccomended industry standards for as many operations as possible.
+It does, however strive for simplicity in its VHDL design, using official IEEE-recommended industry standards for as many operations as possible.
 This lets the synthesizer use its intimate knowledge of the feature set of the target FPGA to create customized hardware configurations that exploit the possibilities the FPGA provides.
 This means that dedicated utility slices, block RAM sections and similar will be used where possible.
 They are typically faster than their custom logic counterparts, and therefore allow for quicker execution.
-Although quicker execution by virtue of increased clock speeds does not change the energy efficiency of the processor for finite terminating programs, it may allow other dependant components in a larger system to enter low energy states quicker, and thereby reducing static energy loss in the system as a whole.
+Although quicker execution by virtue of increased clock speeds does not change the energy efficiency of the processor for finite terminating programs, it may allow other dependent components in a larger system to enter low energy states quicker, and thereby reducing static energy loss in the system as a whole.
 
 To make the processor more energy efficient, sleep states could be introduced.
 They allow the processor to enter low energy states when it is not needed, i.e. typically when it is waiting for an external signal in a larger system, and when it has nothing else useful to do.
@@ -109,9 +109,9 @@ We reasoned that delivering a solid report would be a more efficient use of our 
 
 In retrospect we should probably have increased the effort earlier and tapered it off at a sustainable amount, e.g. \textit{less} than 16 hours a day.
 However we are quite satisfied with the outcome, even though we did not meet all of the assignment's requirements.
-We've learned a lot and accomplished a whole lot, and trying to navigate the windows toolchain while trying to flash the FPGA was the least enjoyable part of the assignment.
+We've learned a lot and accomplished a whole lot, and trying to navigate the windows tool chain while trying to flash the FPGA was the least enjoyable part of the assignment.
 
-The specifics of each group member's day-to-day varied: two thirds of the group's members kept a log of their work sessions on the project's github wiki. 
+The specifics of each group member's day-to-day varied: two thirds of the group's members kept a log of their work sessions on the project's GitHub wiki. 
 The logs vary in content.
 Some of them contain the approximate starting time of the work session and nothing else while others contain a detailed description of the challenges and tasks encountered throughout the session.
 The ones containing a more detailed description of the day's events and undertaken tasks proved to be valuable resources during the report's design.
