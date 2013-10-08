@@ -29,8 +29,9 @@ To put it in layman's terms: this is where the answer comes out.
 \item{\textbf{Flags}} \\
 The ALU has a 4-bit wide flag output which for every instruction shows some extra information about certain instructions.
 The the four boolean flags available are \texttt{carry}, \texttt{overflow}, \texttt{negative} and \texttt{zero}.
-The flags are similar to a status register, which is a common architectural component in a processor.
-However, since the flags are always set to a new value (most often the default value $ 0 $), no phyiscal register is needed.
+The flags are reminiscent of a status register, which is a common architectural component in a processor.
+However, since the flags are always set to a new value (most often the default value \texttt{0}), no phyiscal register is needed.
 Because of this, the solution processor arguably doesn't have a status register as much as it has some status signals.
+Currently the \texttt{carry} and \texttt{overflow} flags are unused.
 
 \end{description}

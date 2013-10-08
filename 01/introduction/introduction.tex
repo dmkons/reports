@@ -1,13 +1,14 @@
-This report presents a solution to ``Assignment \#1 - Simple Multi-cycle MIPS Processor'' of the autumn 2013 course TDT4255 at NTNU.
+This report presents a solution to ``Assignment \#1 - Simple Multi-cycle MIPS Processor'' of the autumn 2013 course TDT4255 Computer Design at NTNU.
 
 \section{Assignment}
 
-A summery of the assignment can be found in section 4.1 of the compendium~\cite[p.114]{compendium}, and is reproduced below for convenience:
+A summary of the assignment can be found in section 4.1 of the compendium~\cite[p.114]{compendium}, and is reproduced below for convenience:
 
 \begin{quote}
 ``In this assignment, you will design a simple multi-cycle MIPS processor in VHDL and synthesize your design by following the procedure described in Chapter 2~\cite[of the compendium]{compendium}.
 You will also verify the behaviour of the implemented MIPS processor using the ModelSim simulator.
-Once your design is verified, you will integrate the MIPS processor into a MicroBlaze-based embedded system as a peripheral core, implement the embedded system design in FPGA\footnote{It was assumed that the assignment author means ``VHDL'' here} and the designed processor in an FPGA.''
+Once your design is verified, you will integrate the MIPS processor into a MicroBlaze-based embedded system as a peripheral core, implement the embedded system design in FPGA and the designed processor in an FPGA.''
+- \cite[p.114]{compendium} 
 \end{quote}
 
 \subsection{Requirements}
@@ -42,7 +43,7 @@ These are listed in Table \vref{table:required-instructions}.
 
 Note: the assignment text required the ``\texttt{LDI} (Load Upper Immediate)''\footnote{Verbatim from \cite[p.114]{compendium}} instruction to be implemented.
 However in MIPS, \texttt{LDI} is not an instruction.
-The closest match in MIPS is the instruction called \texttt{LUI} (Load Upper Immedate).
+The closest match in MIPS is the instruction called \texttt{LUI} (Load Upper Immedate)\footnote{Verbatim from \cite[p.114]{mips-instruction-set}}.
 This instruction loads an immediate, but also shifts it to put it in the upper half of the destination register.
 As LUI does not do exactly what LDI would have done, a new instruction \texttt{LLI} (Load Lower Immediate), takes \texttt{LDI}'s place in the instruction requirements table.
 
@@ -53,23 +54,23 @@ Once the processor is designed, it must also be verified in a simulation environ
 
 \section{Goals}
 
-For this assignment, a set of solution goals were decided upon that should be met in addition the the minimal requirements given in the assignment.
-All decisions in the process of completing the assignment were made to further the goals in this section.
-The three solution goals are presented here in order of descending importance.
+For this assignment, a set of solution goals were decided upon that should be met in to addition the the minimal requirements given in the assignment.
+All decisions made in the process of completing the assignment were to further the goals in this section.
+The three solution goals are presented here in order of descending importance detailed.
 
 \subsection{Industry Standard Best Practices} \label{sec:goals-industry-standards}
 
-The first goal is that, to the extent that is is practically possible, the solution should conform to the current industry standards in aspects such as implementation style, tooling, best practices and so on.
+The first goal is, to the extent that is is practically possible that, the solution should conform to the current industry standards in aspects such as implementation style, tooling, best practices and so on.
 Using industry standards for the solution processor was a goal for two reasons:
-\textit{First}, because the industry has many, many years of combined experience in the field, and using its accumulated knowledge and wisdom for what it is worth can help increase solution stability, ease of development, and avoiding common pitfalls and gotchas, and
-\textit{Second}, using well-documented and feature-rich standard libraries facilitate the implementation of many different CPU instructions, which was a prioritized goal for this exercise.
+\textit{First}, because the industry has many, many years of combined experience in the field, and using its accumulated knowledge and wisdom for what it is worth can help increase solution stability, ease of development, and avoiding common pitfalls and gotchas.
+\textit{Second} because, using well-documented and feature-rich standard libraries facilitate the implementation of many different CPU instructions.
 
 \subsection{A Large and Diverse Instruction Set} \label{sec:goals-instruction-set}
 
 The second solution goal is that the solution processor should support as much of the MIPS I instruction set as possible.
 It should ideally be functionally equivalent to other MIPS I processors.
 The reasoning behind this is that the closer the solution processor resembles a regular MIPS processor, the easier it is to employ existing tools, made for other MIPS processors, with the solution processor.
-This allows for things like an existing MIPS-supporting C compiler to compile regular C code to run on the solution processor.
+This would allows for things like an existing MIPS-supporting C compiler to compile regular C code to run on the solution processor.
 
 \subsection{Performance} \label{sec:goals-performance}
 

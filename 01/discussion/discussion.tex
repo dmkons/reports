@@ -50,8 +50,13 @@ To improve the test coverage, the obvious next step is to load the solution proc
 
 \subsection{Instruction Set}
 
-To what extent did we meet the design goal of having a large instruction set?
-Was it a good idea to choose this as a design goal? (Hint: no).
+A large instruction set was implemented for the solution processor.
+Although implementing it was fun, it distracted from the other parts of the assignment.
+One of the reasons for originally choosing to implement the full instruction set was to be able to use existing MIPS tools such as compilers, assemblers, etc.
+Unfortunately, not enough instructions were implemented for this benefit to kick in.
+Ultimately, this design goal did more harm than good for the solution processor.
+On the positive side, implementing a large instruction set turned out to be very educational, as it forced the authors to expand the handout framework and make architectural decisions.
+It also helped greatly in the process of becoming fluent and proficient in VHDL.
 
 \subsection{Performance}
 
@@ -107,8 +112,6 @@ However we are quite satisfied with the outcome, even though we did not meet all
 We've learned a lot and accomplished a whole lot, and trying to navigate the windows toolchain while trying to flash the FPGA was the least enjoyable part of the assignment.
 
 The specifics of each group member's day-to-day varied: two thirds of the group's members kept a log of their work sessions on the project's github wiki. 
-The logs vary in content. Some of them contain the approximate starting time of the work session and nothing else while others contain a detailed description of the challenges and tasks encountered throughout the session.
+The logs vary in content.
+Some of them contain the approximate starting time of the work session and nothing else while others contain a detailed description of the challenges and tasks encountered throughout the session.
 The ones containing a more detailed description of the day's events and undertaken tasks proved to be valuable resources during the report's design.
-
-
-
