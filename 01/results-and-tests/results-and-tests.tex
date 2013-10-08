@@ -2,25 +2,24 @@ Testing is an important part of any kind of development, be it software developm
 This section presents the different kinds of tests performed.
 
 \section{Performance}
+\label{sec:results-performance}
 
-Using performance optimization ideas from \cite{xilinx-speed-strategies},
-TODO: Odd help me cite this: http://www.xilinx.com/itp/xilinx10/isehelp/ise\_c\_xst\_speed\_strategies.htm
-different synthesization settings were tested and measured to see what gave the best results.
+Using performance optimization ideas from \cite{xilinx-speed-strategies}, different synthesization settings were tested and measured to see what gave the best results.
 Performance was measured using the maximum frequency estimate output by the XST synthesize process.
 Higher maximum frequency is better.
 
 Before optimization, with only default settings, the maximum frequency was given as 42.793Mhz.
-When synthesizing with the "disable dsp usage" on, the maximum frequency rose to 55.117Mhz, at the cost of a longer runtime for the synthesis process.
+When synthesizing with the ``disable dsp usage'' on, the maximum frequency rose to 55.117Mhz, at the cost of a longer runtime for the synthesis process.
 Disabling resource sharing when synthesizing further increased the maximum frequency to 56.277Mhz.
-Interestingly, increasing the optimization level from "Normal" to "High" yielded lower results.
-All the other settings (all were tested) showed no difference, so they were kept at the default values.
+Interestingly, increasing the optimization level from ``Normal'' to ``High'' yielded lower results.
+All the other settings (all were tested) showed no difference, and they were kept at the default values.
 
 \section{Energy Efficiency}
 
 Because the processor has not been successfully run on an FPGA, it is diffucult to perform meaningful energy efficiency testing.
-However, ISE provides a "Generate Power Data" process, which can be used to assess ballpark measurements.
+However, ISE provides a ``Generate Power Data'' process, which can be used to assess ballpark measurements.
 Table \vref{table:power-data} shows generated power data.
-The synthesis process offers a setting called "Power Reduction".
+The synthesis process offers a setting called ``Power Reduction''.
 This setting has no effect on the generated power data.
 
 \begin{table}
@@ -78,57 +77,58 @@ Vcco25 & 2.500 & 0.00 & 0.00 & 0.00 \\
 \section{VHDL Test Benches}
 
 In VHDL, one has the opportinity to create test benches to validate VHDL components.
-A test bench is a piece of VHDL code that instantiates a component, manipulates its in-signals, and measures the output the component sends out again.
+A test bench is a piece of VHDL code that instantiates a component, manipulates its in-signals, and measures the resulting output the component sends out again.
 It is the hardware design analog of unit testing in regular software development.
 These test benches are typically run in simulator software such as ISim or ModelSim, which simulates hardware in an easily measurable and inspectable environment.
 
 Generally, each component made in VHDL should have a corresponding test bench.
-Because a component is typically defined in its own file, a common test bench scheme is to have one file, ``\texttt{my\_entity.vhd}'', which defined the component, and one file, ``\texttt{tb\_my\_entity.vhd}'', which defines the test bench for the component.
+Because a component is typically defined in its own file, a common test bench scheme is to have one file, ``\texttt{my\_entity.vhd}'', which defines the component, and one file, ``\texttt{tb\_my\_entity.vhd}'', which defines the test bench for the component.
 Of course, here \texttt{my\_component} is a placeholder name for a component.
 
 In this assignment, each component has an corresponding automatic test bench, which aims to verify correct functionality for a component.
 The tests were run in the hardware simulation tool called ISim 12.4 (nt64).
-See appendix (TODO: appendix numbers) for detailed results of each test bench simulation.
 
 \subsection{ALU Test Bench}
 
-The alu is continously receiving values for x, y and func, and will use this input to set the correct values for r and the flags.
-The test bench include tests for the outputs for each of the alus supported functions.
-In addition the subtraction function is tested extra thuraly.
-This is because of it's involvement in the branch operations.
+The ALU is continuously receiving values for X, Y and Func, and will use this input to set the correct values for R and the flags.
+The test bench include tests for the outputs for each of the ALUs supported functions.
+In addition the subtraction function is tested extra thoroughly.
+This is because of its involvement in the branch operations.
 
 \subsection{Branch Controller Test Bench}
 
-The branch controller is a logical unit that will continuously determin if the alu should compare to a zero value, and whether or not to branch.
+The branch controller is a logical unit that will continuously determin if the ALU should compare to a zero value and whether or not to branch.
 The test will check each branching operation and test that the compare\_zero and compare\_zero\_value have the correct values.
 The test will also check each of these operations with their sensitive flag on and off, and test that branch have the right value.
-For good measure we also check that all values is set to 0 when the operation is not a branching operation.
+For good measure we also check that all values are set \texttt{to} 0 when the operation is not a branching operation.
 This last test is not really nesseccary in the current processor layout as the branching mux will remove the signal eventually.
 
 \subsection{MUX Test Bench}
 
 The MUX is really quite simple, and so is its test.
-The test put two different signals on the input ports and read each of these through each of the imput ports.
+The test puts two different signals on the input ports and reads each of these through each of the input ports.
 
-\subsection{Pc Test Bench}
+\subsection{PC Test Bench}
 
 The program counter have several inputs which on each rising edge on the clock will reevaluate what value to put out of the program counter.
 There are several ways the programcounter can act:
-* If reset is set to 1, it will reset pc\_out to 0.
-* If both pc enable and reset is set to 1, it should still reset.
-* If pc enable is set to 0, it will not load a new value from pc\_in.
-* If pc enable is set to 1, pc\_out will be set to the value of pc\_in.
-We test that each of these 4 behaviors work as intended.
+\begin{itemize}
+\item{If reset is set to \texttt{1}, it will reset pc\_out to \texttt{0}.}
+\item{If both pc enable and reset is set to \texttt{1}, it should still reset.}
+\item{If pc enable is set to \texttt{0}, it will not load a new value from pc\_in.}
+\item{If pc enable is set to \texttt{1}, pc\_out will be set to the value of pc\_in.}
+\end{itemize}
+The pc test bench confirms that each of these four behaviors work as intended.
 
 
 \subsection{Processor Test Bench}
 
-The processor test bench test that the processor act as expected on a few operations.
-First it load some numbers into registers.
-When these data are ready, the test do some math on the data.
-In the end the data is writen back to memory.
-The purpose of this test is not to cover all the operations, as they are already covered in the alu test bench.
-The processor test bench will make sure that all of the processors components are working together, and that it is able to execute memory load and store operations.
+The processor test bench tests that the processor acts as expected on a few operations.
+First it loads some words into registers.
+When the data is ready, the test performs some arithmetical and logical operations on the data.
+In the end the data is written back to memory.
+The purpose of this test is not to cover all the operations, as they are already covered in the ALU test bench, but rather test each class of operation to verify that they work.
+The processor test bench makes sure that all the processor components work together as intended, and that the processor is able to execute memory load and store operations.
 
 \subsection{Toplevel Test Bench}
 
@@ -136,5 +136,5 @@ The processor test bench will make sure that all of the processors components ar
 
 \section{Testing on the Spartan-6 FPGA}
 
-It is also possible to run toplevel test benches directly on the FPGA (I think).
-TODO: write more about this.
+It is also possible to run tests directly on the FPGA.
+This was unfortunately not done, as the processor was never successfully loaded onto the FPGA.
