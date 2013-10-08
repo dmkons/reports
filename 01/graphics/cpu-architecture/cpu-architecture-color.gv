@@ -11,15 +11,15 @@ digraph graphname {
     "constant_1" [label="1" shape="plaintext"];
 
 
-    "Add2" [xlabel="adder" label="{{<in1> in | <in2> in} | <out> +}}"];
+    "Add2" [xlabel="adder" label="{{<in2> in | <in1> in} | <out> +}}"];
     "Concat" [shape="circle"];
     "Sign Extend" [ shape="circle" label="sign\n extend"];
 
-    "Control Unit" [style="filled" fillcolor="olivedrab2" label="<f0> Control Unit | {{ <inst> Instruction} | {<alusource> ALU source | <regwrite> register write | <regdest> register destination | <memtoreg> Memory to register | <memw> Memory write | <jump> jump | <alufunc> ALU function | <pcenable> PC Enable }}"];
+    "Control Unit" [style="filled" fillcolor="olivedrab2" label="<f0> Control Unit | {{ <inst> Instruction} | {  <regdest> register destination | <regwrite> register write | <alusource> ALU source | <alufunc> ALU function | <memw> Memory write |<memtoreg> Memory to register |  <jump> jump | <shiftswap> shift swap | <pcenable> PC Enable }}"];
 
     "Branch Controller" [style="filled" fillcolor="brown1" label="<f0> Branch Controller | {{<opcode> opcode | <negative> negative | <zero> zero | <carry> carry | <overflow> overflow } | { <branch> branch | <zerooverride> zero override enable | <value> value }}"];
 
-    "ALU" [label="<f0> ALU | {{<func> Function | <x> X | <y> Y} | {<r> R | <negative> Negative | <zero> Zero |<carry> Carry | <overflow> Overflow }}"];
+    "ALU" [label="<f0> ALU | {{<func> Function | <x> X | <y> Y} | {<r> R | <negative> Negative | <zero> Zero | <carry> Carry | <overflow> Overflow }}"];
 
     "Registers" [style="filled" fillcolor="lightsteelblue"  label="<f0> Registers | {{<readreg1> Read register 1 | <readreg2> Read register 2 | <wreg> Write register | <wdata> Write data | <regwrite> register write} | {<readdata1> Read data 1 | <readdata2> Read data 2}} "];
 
@@ -37,9 +37,8 @@ digraph graphname {
     "Jump MUX" [shape="Mrecord" label="<1> 1 | { <control> ctrl | <out> out } | <0> 0" xlabel="MUX_jmp"];
     "Memory to Register MUX" [shape="Mrecord" label="<1> 1 | { <control> ctrl | <out> out } | <0> 0" xlabel="MUX_mem_to_reg"];
     "Zero Override MUX" [shape="Mrecord" label="<1> 1 | { <control> ctrl | <out> out } | <0> 0" xlabel="MUX_zero_override"]
+    "Shift Swap MUX" [shape="Mrecord" label="<1> 1 | { <control> ctrl | <out> out } | <0> 0" xlabel="MUX_shift_swap"];
 
-    // was this removed from the design?
-//    "Shift Swap MUX" [shape="Mrecord" label="<1> 1 | { <control> | <out> }| <0> 0" xlabel="MUX_shift_swap"];
 
     // signals! erm I mean EDGES
     PC:out -> "Instruction Memory":"read address";
@@ -58,6 +57,8 @@ digraph graphname {
     "ALU Source MUX":out -> "Zero Override MUX":0;
     "Zero Override MUX":out -> "ALU":y;
     "Memory to Register MUX":out -> "Registers":wdata;
+    "Shift Swap MUX":out -> "ALU":x;
+
 
 
     "Instruction Memory":inst -> "Registers":"readreg2" [label="Inst[25-21]" style="bold" color="magenta4"];
@@ -75,8 +76,8 @@ digraph graphname {
     SignExtendHolder -> Add2:in2 [ style="bold" color="magenta4"];
     SignExtendHolder -> "ALU Source MUX":1 [ style="bold" color="magenta4"];
 
-    "Registers":"readdata1" -> "ALU":x [style="bold" color="royalblue"];
-    "Registers":"readdata2" -> "ALU Source MUX":0 [style="bold" color="royalblue"];
+    "Registers":"readdata1" -> "Shift Swap MUX":0 [style="bold" color="royalblue"];
+    "Registers":"readdata2" -> "Shift Swap MUX":1 [style="bold" color="royalblue"];
     "Registers":"readdata2" -> "Data Memory":"wdata" [style="bold" color="royalblue"]; 
 
     "ALU":r -> "Data Memory":"address";
@@ -100,6 +101,7 @@ digraph graphname {
     "Control Unit":memtoreg -> "Memory to Register MUX":control [style="bold"color="green4"];
     "Control Unit":alufunc -> "ALU":func [style="bold"color="green4"];
     "Control Unit":pcenable -> PC:enable [style="bold"color="green4"];
+    "Control Unit":shiftswap -> "Shift Swap MUX":control [style="bold"color="green4"];
 
     "Concat" -> "Jump MUX":1 [label="Jump Address[31-0]" ];
  }
