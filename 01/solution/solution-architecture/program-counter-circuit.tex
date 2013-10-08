@@ -1,4 +1,4 @@
-The ``program counter circuit'' is the loop formed by the Program Counter along with the Branch and Jump circuitry, see \vref{figure:pc-circuit}.
+The ``program counter circuit'' is the loop formed by the Program Counter along with the Branch and Jump circuitry, see figure \vref{figure:pc-circuit}.
 
 The program counter is a register that holds the address of the next instruction to be fetched.
 When no branching or jumping is involved (the ``sunny day scenario''), the program counter cycle updates the program counter when the control unit tells it to.
@@ -35,7 +35,7 @@ The Program Counter's next value.
 
 \item{\textbf{Reset}} \\
 
-When the reset signal is high, the program counter is reset to 0 on the next rising edge of the clock.
+When the reset signal is high, the program counter is reset to $-1$\footnote{\texttt{FF FF FF FF}} on the next rising edge of the clock.
 
 \item{\textbf{Program Counter Enable}} \\
 

@@ -2,16 +2,14 @@ This chapter discusses the performance and test results of the presented solutio
 
 \section{Requirements}
 
-The assignment's main requirement, which was to ``simple multi-cycle MIPS architecture''~\cite[p.114]{compendium}, was met.
+The assignment's main requirement, which was to implement a ``simple multi-cycle MIPS architecture''~\cite[p.114]{compendium}, was met.
 It was based on a suggested MIPS-like architecture presented in Figure 4.1~\cite[p.115]{compendium} in the course compendium, as was required.
-The required instructions (see table \vref{table:required-instructions} have been implemented for the processor, as well as a vast array of additional and more complex instructions (see figure \vref{table:implemented-instructions}.
-The processor was exensively tested at different levels of abstraction using in several simulation environments, which was a requirement that was met.
+The required instructions (see table \vref{table:required-instructions}) have been implemented for the processor, as well as a vast array of additional and more complex instructions (see figure \vref{table:implemented-instructions}.
+The processor was exensively tested at different levels of abstraction in several simulation environments, which was a requirement that was met.
 Finally, the processor was to be tested on a hardware platform.
 This requirement was not met.
 
 \section{Additional Goals}
-
-Did we meet the goals? 
 
 \subsection{Industry Standard Best Practices}
 
@@ -21,29 +19,26 @@ What are the industry standards?
 VHDL is a language defined by standards laid forth by IEEE, the Institute of Electrical and Electronics Engineers.
 In order to write good VHDL, it is best to use IEEE-sanctioned standard libraries.
 
-\subsubsection{\texttt{numeric\_std}} \label{sec:numeric-std}
+\subsubsection{The \texttt{numeric\_std} package~\cite{why-library-numericstd-is-preferred}} \label{sec:numeric-std}
 
-
-For doing arithmetic operations on logic vectors in VHDL, many resources (TODO: cite! websites, tutorials, books) will suggest using the functionality provided in the packages \texttt{ieee.std\_logic\_arith} and \texttt{ieee.std\_logic\_unsigned}.
-These packages are non-standard packages defined by a company called Synposis, which makes one of the more popular VHDL tool suites.
+For doing arithmetic operations on logic vectors in VHDL, many resources will suggest using the functionality provided in the packages \texttt{ieee.std\_logic\_arith} and \texttt{ieee.std\_logic\_unsigned}.
+These packages are non-standard packages defined by a company called Synopsis, which makes one of the more popular VHDL tool suites.
 Synopsis bundles these packages in their tool distributions, which causes a lot of confusion as to whether or not a part of the standard VHDL library.
 Unfortunately, because of this, these non-standard packages have enjoyed wide-spread usage amongst VHDL coders.
 This is a problem, because different vendors of VHDL tools have begun supply their own versions of \texttt{std\_logic\_arith} and \texttt{std\_logic\_unsigned}.
 Of course, as there is no standard governing these packages, the different versions supplied by different versions have begun to diverge, and are not necessarily compatible with each other.
 
-IEEE has countered this problem by defining new standard packages called \texttt{numeric\_std} and \texttt{numeric\_bit}, which implement similar functionality as the unofficial Synposis packages.
+IEEE has countered this problem by defining new standard packages called \texttt{numeric\_std} and \texttt{numeric\_bit}, which implement similar functionality as the unofficial Synopsis packages.
 This ensures compatibility across VHDL tools from different vendors.
 
 \texttt{Numeric\_std} has a number of advantages over \texttt{std\_logic\_arith}.
 The biggest advantage is that it defines new types for arithmetical logcal vectors, \texttt{signed} and \texttt{unsigned}, as opposed to trying to use \texttt{std\_logic\_vector} directly, which is what the Synopsis packages do.
 This is an advantage because combining signed and unsigned arithmetic on the same signals becomes a lot easier.
-In fact, the Synposis packages simply assumes all operands are unsigned in all arithmetic operations, which is a bad idea.
+In fact, the Synopsis packages simply assumes all operands are unsigned in all arithmetic operations, which is a bad idea.
 A different advantage with the standard packages is that they provide stronger quality assurance through type checking, as they introduce new types.
 This is a good thing because it lets developers find bugs earlier, speeding up the development process.
 
 In the solution VHDL code, all arithmetical operations are sanely implemented using \texttt{numeric\_std}.
-
-TODO: citation to this thing might be a good idea: http://vhdlguru.blogspot.no/2010/03/why-library-numericstd-is-preferred.html .
 
 \subsubsection{Test Coverage}
 
@@ -53,10 +48,6 @@ Unfortunately, the solution processor was never tested physically on the FPGA, d
 
 To improve the test coverage, the obvious next step is to load the solution processor onto an FPGA and run the same tests on the physical board.
 
-\subsubsection{Additional industry standards?}
-
-TODO: Lets google some stuff and shoehorn it into this report.
-
 \subsection{Instruction Set}
 
 To what extent did we meet the design goal of having a large instruction set?
@@ -65,16 +56,15 @@ Was it a good idea to choose this as a design goal? (Hint: no).
 \subsection{Performance}
 
 The presented solution processor performs rather well for a sequential simple multi cycle processor.
-The clock's maximum speed is (TODO: insert max clock speed).
-In testing, it performs reliably in with clock speeds up to X at temperature Y.
+The clock's maximum speed is 56.277Mhz \vref{sec:discussion-performance}.
 Being a multi-cycle processor, most instructions take more than one cycle to complete.
 Instructions that only operate on immediates and registers take two cycles to complete.
 Instructions that access the data memory require an additional cycle, for a total of three cycles.
-This means that under optimal conditions, the processor is capable of X/2 instructions per second (ref IPS).
+This means that under optimal conditions, the processor is theoretically capable of 26,138,500 instructions per second.
 
 One way of increasing performance beyond what has been done in the solution is to restructure the logical flow of the architecture to keep the data flow dependencies to a minimum.
 Doing so would mean that the processor would need less time to stabilize for each cycle, and as an effect, the clock cycle speed could be increased.
-As we all remember from Intel and AMD marketing in the early 2000's, more MHz means more power!
+As we all remember from Intel and AMD marketing in the early 2000's: more MHz means more power!
 
 To further increase performance, we could introduce instruction-level parallelism in the form of a pipeline.
 This, however, is out of the scope of this exercise.
@@ -86,12 +76,15 @@ This report is no different.
 The solution processor was not designed with energy efficiency as a primary design goal.
 It does, however strive for simplicity in its VHDL design, using official IEEE-reccomended industry standards for as many operations as possible.
 This lets the synthesizer use its intimate knowledge of the feature set of the target FPGA to create customized hardware configurations that exploit the possibilities the FPGA provides.
-This means that dedicated utility slices, block ram sections and similar will be used where possible.
+This means that dedicated utility slices, block RAM sections and similar will be used where possible.
 They are typically faster than their custom logic counterparts, and therefore allow for quicker execution.
 Although quicker execution by virtue of increased clock speeds does not change the energy efficiency of the processor for finite terminating programs, it may allow other dependant components in a larger system to enter low energy states quicker, and thereby reducing static energy loss in the system as a whole.
 
 To make the processor more energy efficient, sleep states could be introduced.
 They allow the processor to enter low energy states when it is not needed, i.e. typically when it is waiting for an external signal in a larger system, and when it has nothing else useful to do.
+
+Since the solution processor supports a large amount of diverse instructions, it can execute programs in fewer cycles than a simpler processor, because it can combine several simple instructions into a single complex one.
+This means that the processor needs to do less work in total, and is more energy efficient.
 
 \section{About the Work Process}
 
@@ -106,9 +99,6 @@ also we could just go through our logs and see what we actually did and in what 
 
 The specifics of each group member's day-to-day varied, two thirds of the group's members kept a log of their work sessions on the project's github wiki. 
 The logs vary in content. Some of them contain the approximate starting time of the work session and nothing else while others contain a detailed description of the challenges and tasks encountered throughout the session.
-
-
-THAT'S WHAT LOGS ARE FOR, YEAH.
 
 TODO: insert graph of git activity
 

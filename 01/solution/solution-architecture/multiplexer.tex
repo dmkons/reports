@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-The multiplexer... do we even need to talk about it? Yes, because it pads the report!
-Seriously do we really need padding at this point?
-
-=======
-The multiplexer is a simple regular multiplexer implemented as a VHDL entity, for tidyness and modularity.
+The multiplexer is a simple, ordinary multiplexer implemented as a VHDL entity for tidiness and modularity.
 Although quite trivial, it is documented here for completeness.
 
 \subsubsection{In Signals}
@@ -20,6 +15,8 @@ A generic \texttt{std\_logic\_vector} input.
 \item{\textbf{Selector}} \\
 
 A boolean select signal that selects either Input 0 or Input 1 to be passed on as output.
+In the architecture diagram these are labeled as ``\texttt{ctrl}''. 
+In the VHDL code it is the ``\texttt{enable}'' signal.
 
 \end{description}
 
@@ -31,4 +28,3 @@ A boolean select signal that selects either Input 0 or Input 1 to be passed on a
 Input 0 or Input 1, decided by the Selector.
 
 \end{description}
->>>>>>> 6bafedeeea86b9360879bfc0ce56123bdc331ec1

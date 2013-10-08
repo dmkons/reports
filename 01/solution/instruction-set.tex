@@ -1,4 +1,4 @@
-The solution processor implements a modified subset of the MIPS instruction set.
+The solution processor implements a modified and expanded subset of the MIPS instruction set.
 A quick reference of the MIPS instruction set can be found in Figure 3.4 of the compendium~\cite[p.112]{compendium}.
 The instructions, as in regular MIPS, can be on one of three general formats: R, I and J~\cite[p.109-11]{compendium}.
 
@@ -18,14 +18,14 @@ This is done in alignment with the design goals set for the solution processor.
             \texttt{BEQ} & Branch if equal \\
             \texttt{BNE} & Branch not equal \\
             \texttt{J} & Jump \\
-            \texttt{LUI} & Load upper immediate \\
+            \texttt{LLI} & Load lower immediate \\
             \texttt{LW} & Load word \\
             \texttt{MULT} & Multiply \\
             \texttt{MULTU} & Multiply unsigned \\
             \texttt{NOR} & Nor \\
             \texttt{OR} & Or \\
             \texttt{ORI} & Or immediate \\
-            \texttt{PASSTHROUGH} & Passthrough (i.e. send the first input through unmodified) \\
+            \texttt{PASSTHROUGH} & Passthrough (i.e. send the X input unmodified through the ALU) \\
             \texttt{SLL} & Shift left logical \\
             \texttt{SLLV} & Shift left logical variable \\
             \texttt{SLT} & Set less than \\
@@ -45,7 +45,7 @@ This is done in alignment with the design goals set for the solution processor.
         \smallskip
         \hrule
         \smallskip
-        \caption{Instructions implemented in the solution processor.}
+        \caption{Instructions implemented in the solution processor}
         \label{table:implemented-instructions}
     \end{center}
 \end{table}
