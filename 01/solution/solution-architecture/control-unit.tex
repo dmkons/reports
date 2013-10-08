@@ -51,7 +51,7 @@ If the Reset signal is \texttt{1}, the Control Unit stalls.
 \begin{description}
 \item{\textbf{Register Destination}} \\
 This signal selects which part of an instruction word contains the destination register of an operation.
-If \texttt{1} then the the Register Destination MUX outputs bits 15-11 of the instruction. If \texttt{0} then it outputs bits 20-16 of the instruction.
+If \texttt{1} then the Register Destination MUX outputs bits 15-11 of the instruction. If \texttt{0} then it outputs bits 20-16 of the instruction.
 Either way the Register Destination MUX feeds this to the Write Register port on the Registers block.
 
 \item{\textbf{Memory To Register}} \\
@@ -61,7 +61,7 @@ This signal decides whether or not a word fetched from memory will be stored in 
 This signal forwards the ALU function part of the currently executing instruction to whatever other components that may need it.
 In the solution architecture, the ALU is the only component that receives the ALU function signal.
 In the suggested architecture, this signal is sent from the ALU control unit.
-However, since the ALU control unit and the regular control unit have been merged in the solution archtecture, this signal is instead sent from the control unit.
+However, since the ALU control unit and the regular control unit have been merged in the solution architecture, this signal is instead sent from the control unit.
 
 \item{\textbf{Memory Write}} \\
 This signal decides whether or not the current value ``at the door of the data memory'' so to speak will be accepted and written to the data memory.
