@@ -1,11 +1,3 @@
-Presents the results: what has been successfully completed and what did not work.
-If any ways around it were found, provide them at this place.
-Every solution should be tested for its validity.
-This is the place where you will describe what kind of testing you have performed and what the outcome of your tests was.
-
-Testing is an important part of any kind of development, be it software development or other kinds of development.
-This section presents the different kinds of tests performed.
-
 \section{VHDL Test Benches}
 
 In VHDL, one has the opportinity to create test benches to validate VHDL components.
@@ -18,20 +10,48 @@ Because a component is typically defined in its own file, a common test bench sc
 Of course, here \texttt{my\_component} is a placeholder name for a component.
 
 In this assignment, each component has an corresponding automatic test bench, which aims to verify correct functionality for a component.
-The tests were run in the hardware simulation tool called ISim (TODO: reference ISim version etc).
+The tests were run in the hardware simulation tool called ISim 12.4 (nt64).
 See appendix (TODO: appendix numbers) for detailed results of each test bench simulation.
 
 \subsection{ALU Test Bench}
 
-TODO: Something about this test bench.
+The alu is continously receiving values for x, y and func, and will use this input to set the correct values for r and the flags.
+The test bench include tests for the outputs for each of the alus supported functions.
+In addition the subtraction function is tested extra thuraly.
+This is because of it's involvement in the branch operations.
 
 \subsection{Branch Controller Test Bench}
 
-TODO: Something about this test bench.
+The branch controller is a logical unit that will continuously determin if the alu should compare to a zero value, and whether or not to branch.
+The test will check each branching operation and test that the compare\_zero and compare_\zero\_value have the correct values.
+The test will also check each of these operations with their sensitive flag on and off, and test that branch have the right value.
+For good measure we also check that all values is set to 0 when the operation is not a branching operation.
+This last test is not really nesseccary in the current processor layout as the branching mux will remove the signal eventually.
+
+\subsection{MUX Test Bench}
+
+The MUX is really quite simple, and so is its test.
+The test put two different signals on the input ports and read each of these through each of the imput ports.
+
+\subsection{Pc Test Bench}
+
+The program counter have several inputs which on each rising edge on the clock will reevaluate what value to put out of the program counter.
+There are several ways the programcounter can act:
+* If reset is set to 1, it will reset pc\_out to 0.
+* If both pc enable and reset is set to 1, it should still reset.
+* If pc enable is set to 0, it will not load a new value from pc\_in.
+* If pc enable is set to 1, pc\_out will be set to the value of pc\_in.
+We test that each of these 4 behaviors work as intended.
+
 
 \subsection{Processor Test Bench}
 
-TODO: Something about this test bench.
+The processor test bench test that the processor act as expected on a few operations.
+First it load some numbers into registers.
+When these data are ready, the test do some math on the data.
+In the end the data is writen back to memory.
+The purpose of this test is not to cover all the operations, as they are already covered in the alu test bench.
+The processor test bench will make sure that all of the processors components are working together, and that it is able to execute memory load and store operations.
 
 \subsection{Toplevel Test Bench}
 
