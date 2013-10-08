@@ -17,3 +17,33 @@ Therefore the zero value from the branch controller vary from -1 to 1.
 The control unit drives the branch controller by instructing the ALU to do a subtraction on its inputs, $ x - y $, and ignore the result.
 This sets the zero flag of the ALU if the x = y, and the negative flag of the ALU if the x < y.
 It is these flags that is used by the branch controller to detemin if it should branch.
+
+\subsubsection{In Signals}
+
+\begin{description}
+\item{\textbf{Flags}} \\
+
+The Flags signal comes directly from the ALU, and it tells the branch controller the outcome of a compare comparison.
+
+\item{\textbf{Opcode}} \\
+
+The Opcode signal, which comes directly from the currently executing instruction word, tells the branch controller what kind of branch should be checked for, if any.
+
+\end{description}
+
+\subsubsection{Out Signals}
+
+\begin{description}
+\item{\textbf{Compare Zero Value}} \\
+
+TODO: rune must say what this is.
+
+\item{\textbf{Compare Zero}} \\
+
+TODO: rune must say what this is.
+
+\item{\textbf{Branch}} \\
+
+If the branch controller finally decides that a branch should be taken, the Branch signal wil be set.
+
+\end{description}
