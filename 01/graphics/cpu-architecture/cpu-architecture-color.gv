@@ -5,7 +5,7 @@ digraph graphname {
 
     // f0 always refer to the part of block/component/blob that has its name on it
     // except for muxes, which have their names floating around them as an external label
-    "PC" [height="1.5" label="<f0> PC | {{<in> PC_in | <enable> PC_Enable }| <out> PC_out }"];
+    "PC" [height="1.5" label="<f0> PC | {{<clock> clock | <reset> reset | <in> PC_in | <enable> PC_Enable }| <out> PC_out }"];
 
     "Add1" [xlabel="adder" label="{{<in1> in | <in2> in} | <out> +}}"]; //in1 should get rendered as the top one
     "constant_1" [label="1" shape="plaintext"];
@@ -15,13 +15,16 @@ digraph graphname {
     "Concat" [shape="circle"];
     "Sign Extend" [ shape="circle" label="sign\n extend"];
 
-    "Control Unit" [style="filled" fillcolor="olivedrab2" label="<f0> Control Unit | {{ <inst> Instruction} | {  <regdest> register destination | <regwrite> register write | <alusource> ALU source | <alufunc> ALU function | <memw> Memory write |<memtoreg> Memory to register |  <jump> jump | <shiftswap> shift swap | <pcenable> PC Enable }}"];
+
+    "Outside" [label="<f0> External Signals | <reset> Reset | <clock> Clock | <processorenable> Processor Enable"];
+
+    "Control Unit" [style="filled" fillcolor="olivedrab2" label="<f0> Control Unit | {{ <inst> Instruction | <processorenable> processor enable | <clock> clock | <reset> reset} | {  <regdest> register destination | <regwrite> register write | <alusource> ALU source | <alufunc> ALU function | <memw> Memory write |<memtoreg> Memory to register |  <jump> jump | <shiftswap> shift swap | <pcenable> PC Enable }}"];
 
     "Branch Controller" [style="filled" fillcolor="brown1" label="<f0> Branch Controller | {{<opcode> opcode | <negative> negative | <zero> zero | <carry> carry | <overflow> overflow } | { <branch> branch | <zerooverride> zero override enable | <value> value }}"];
 
     "ALU" [label="<f0> ALU | {{<func> Function | <x> X | <y> Y} | {<r> R | <negative> Negative | <zero> Zero | <carry> Carry | <overflow> Overflow }}"];
 
-    "Registers" [style="filled" fillcolor="lightsteelblue"  label="<f0> Registers | {{<readreg1> Read register 1 | <readreg2> Read register 2 | <wreg> Write register | <wdata> Write data | <regwrite> register write} | {<readdata1> Read data 1 | <readdata2> Read data 2}} "];
+    "Registers" [style="filled" fillcolor="lightsteelblue"  label="<f0> Registers | {{<clock> clock | <reset> reset | <readreg1> Read register 1 | <readreg2> Read register 2 | <wreg> Write register | <wdata> Write data | <regwrite> register write} | {<readdata1> Read data 1 | <readdata2> Read data 2}} "];
 
     "Instruction Memory" [style="filled" fillcolor="mediumorchid" label=" <f0>Instruction Memory | {<read address> read address | <inst> Instruction [31-0]}"];
 
@@ -103,5 +106,14 @@ digraph graphname {
     "Control Unit":pcenable -> PC:enable [style="bold"color="green4"];
     "Control Unit":shiftswap -> "Shift Swap MUX":control [style="bold"color="green4"];
 
+
     "Concat" -> "Jump MUX":1 [label="Jump Address[31-0]" ];
+
+    "Outside":reset -> "Control Unit":reset;
+    "Outside":reset -> "Registers":reset;
+    "Outside":reset -> "PC":reset;
+    "Outside":clock -> "Control Unit":clock;
+    "Outside":clock -> "Registers":clock;
+    "Outside":clock -> "PC":clock;
+    "Outside":processorenable -> "Control Unit":processorenable;
  }
