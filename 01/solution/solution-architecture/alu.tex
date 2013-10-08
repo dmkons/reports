@@ -1,11 +1,11 @@
 The ALU in the solution processor has been completely rewritten from scratch.
-This was done so that the IEEE industry standard packages \texttt{numeric\_std} could be used.
+This was done so that the IEEE industry standard packages \texttt{numeric\_std} could be used TODO: insert reference to section about numeric_std.
 Using \texttt{numeric\_std}, developers can safely express complex processes in a succinct and easy-to-read fashion, using the many built-in features.
-Using industry standards for the solution processor was a goal for two reasons.
-First, choosing the conventions and standards recommended by the industry is typically a good idea, as industry leaders have a lot of experience in their field.
-Second, using well-documented and feature-rich standard libraries facilitate the implementation of many different CPU instructions, which was a prioritized goal for this exercise.
+Using industry standards for the solution processor was a goal for two reasons:
+\textit{First}, choosing the conventions and standards recommended by the industry is typically a good idea, as industry leaders have a lot of experience in their field.
+\textit{Second}, using well-documented and feature-rich standard libraries facilitate the implementation of many different CPU instructions, which was a prioritized goal for this exercise.
 
-Although the suggested architecture in the compendium features an ALU control unit\cite{compendium}, it does not exist in the solution architecture.
+Although the suggested architecture in the compendium features an ALU control unit~\cite[p.115]{compendium}, it does not exist in the solution architecture.
 Instead, the ALU control unit's responsibilities are covered for by the regular control unit.
 This design choice was made for the flexibility it provides in implementing more instructions.
 
@@ -29,7 +29,7 @@ The Function signal decides which arithmetical or logical operator should be use
 \begin{description}
 \item{\textbf{R}} \\
 The R signal is the combined result of the X and Y signals using the operator defined by the Function signal.
-To put it in leymans terms: this is where the answer comes out.
+To put it in layman's terms: this is where the answer comes out.
 
 \item{\textbf{Flags}} \\
 The ALU has a 4-bit wide flag output which for every instruction shows some extra information about certain instructions.
