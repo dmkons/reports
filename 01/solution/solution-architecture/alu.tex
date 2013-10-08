@@ -8,3 +8,34 @@ Second, using well-documented and feature-rich standard libraries facilitate the
 Although the suggested architecture in the compendium features an ALU control unit\cite{compendium}, it does not exist in the solution architecture.
 Instead, the ALU control unit's responsibilities are covered for by the regular control unit.
 This design choice was made for the flexibility it provides in implementing more instructions.
+
+TODO: an diagram, and a reference to it.
+
+\subsubsection{In Signals}
+
+\begin{description}
+\item{\textbf{X}} \\
+The X signal is the first operand for the operation performed by the ALU.
+
+\item{\textbf{Y}} \\
+The Y signal the second operand for the operation performed by the ALU.
+
+\item{\textbf{Function}} \\
+The Function signal decides which arithmetical or logical operator should be used to combine the two operands.
+\end{description}
+
+\subsubsection{Out Signals}
+
+\begin{description}
+\item{\textbf{R}} \\
+The R signal is the combined result of the X and Y signals using the operator defined by the Function signal.
+To put it in leymans terms: this is where the answer comes out.
+
+\item{\textbf{Flags}} \\
+The ALU has a 4-bit wide flag output which for every instruction shows some extra information about certain instructions.
+The the four boolean flags available are \texttt{carry}, \texttt{overflow}, \texttt{negative} and \texttt{zero}.
+The flags are similar to a status register, which is a common architectural component in a processor.
+However, since the flags are always set to a new value (most often the default value $ 0 $), no phyiscal register is needed.
+Because of this, the solution processor arguably doesn't have a status register as much as it has some status signals.
+
+\end{description}
