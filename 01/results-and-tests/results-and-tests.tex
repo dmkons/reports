@@ -100,7 +100,7 @@ This is because of it's involvement in the branch operations.
 \subsection{Branch Controller Test Bench}
 
 The branch controller is a logical unit that will continuously determin if the alu should compare to a zero value, and whether or not to branch.
-The test will check each branching operation and test that the compare\_zero and compare_\zero\_value have the correct values.
+The test will check each branching operation and test that the compare\_zero and compare\_zero\_value have the correct values.
 The test will also check each of these operations with their sensitive flag on and off, and test that branch have the right value.
 For good measure we also check that all values is set to 0 when the operation is not a branching operation.
 This last test is not really nesseccary in the current processor layout as the branching mux will remove the signal eventually.
