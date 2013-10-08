@@ -9,30 +9,37 @@ Smaller components have hovering labels showing their names.
 The left side of a box is used for input signals, and the right side of the box is used for output signals.
 The exception to this rule are the muxes, which use a variant of the classic pill-style mux diagrams: Input signals come through the top and bottom, the control signal comes in on the middle left and the output is on the middle right.
 
-\begin{figure}[h!]
+The rest of this section describes the different architectural subcomponents in detail.
+
+\begin{sidewaysfigure}[H]
 	\begin{center}
 		\includegraphics[keepaspectratio, height=\textheight, width=\textwidth]{graphics/cpu-architecture/cpu-architecture-color.pdf}
 		\caption{Architecture of the solution processor.}
 		\label{figure:cpu-architecture}
 	\end{center}
-\end{figure}
+\end{sidewaysfigure}
 
 \subsection{ALU}
 
 \input{solution/solution-architecture/alu.tex}
+\newpage
 
 \subsection{Branch Controller}
 
 \input{solution/solution-architecture/branch-controller.tex}
+\newpage
 
 \subsection{Control Unit}
 
 \input{solution/solution-architecture/control-unit.tex}
+\newpage
 
 \subsection{Program Counter Circuit}
 
 \input{solution/solution-architecture/program-counter-circuit.tex}
+\newpage
 
 \subsection{Multiplexer}
 
 \input{solution/solution-architecture/multiplexer.tex}
+\newpage

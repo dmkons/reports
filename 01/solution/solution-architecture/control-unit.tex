@@ -21,8 +21,6 @@ In the figure, \texttt{mem} transitions are taken when the currently executed in
     \end{center}
 \end{figure}
 
-Because the control unit is so central to understanding how the solution processor works, its in signals and out signals are described here in detail.
-
 \subsubsection{In Signals}
 
 \begin{description}
@@ -35,7 +33,7 @@ The instruction opcode signal contains the opcode of the currently executing ins
 The control unit uses this signal as the input to its state machine, together with the current state.
 
 \item{\textbf{Instruction Function}} \\
-The instruction function signal contains the alu function of the currently execcuting instruction, if available.
+The instruction function signal contains the alu function of the currently executing instruction, if available.
 It is used to help specify out signals in certain special cases.
 
 \item{\textbf{Processor Enable}} \\
