@@ -2,7 +2,7 @@ This section describes the methodology used in creating the solution.
 
 \section{Project Setup}
 
-The Xilinx ISE project was set up with the design properties as in table \ref{table:design-properties}.
+The Xilinx ISE project was set up with the design properties as in table \vref{table:design-properties}.
 
 \begin{table}
     \begin{center}
@@ -36,3 +36,31 @@ The Xilinx ISE project was set up with the design properties as in table \ref{ta
 \section{Tools}
 
 TODO: list all the tools we have used, complete with version numbers etc.
+
+\bigskip
+
+\section{Things we did to increase performance (TODO: put this somewhere better in the report}
+
+getting ideas from here: http://www.xilinx.com/itp/xilinx10/isehelp/ise\_c\_xst\_speed\_strategies.htm
+
+synthesize  -> process properties: set opt goal to speed, opt level to normal, tried turning off resource sharing because Xilinx' HDL ADVISOR suggested that might be faster.
+
+trying with disbling resource sharing again...
+
+
+Lets try everything here: http://www.xilinx.com/itp/xilinx10/isehelp/ise\_c\_xst\_speed\_strategies.htm
+
+Tried disabling dsp usage... is it faster? it takes longer to synthesize at least. yes! brings us from 42.793MHz to 55.117MHz
+
+Tried going to opt high from opt normal, it was at 55.366. staying at normal then.
+
+
+Disabled resource sharing, this sped us up to 56.277. sweet!
+
+Trying to increase fanout 1000-fold.  no effect, reverting.
+case implementation style has no effect, reverting.
+trying with register balancing set to yes. no effect, reverting.
+trying with optimize instantiated primitives. no effect, reverting.
+
+trying with power optimization mode. no effect, so keeping it on!
+
