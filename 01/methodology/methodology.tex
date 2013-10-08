@@ -1,0 +1,38 @@
+This section describes the methodology used in creating the solution.
+
+\section{Project Setup}
+
+The Xilinx ISE project was set up with the design properties as in table \ref{table:design-properties}.
+
+\begin{table}
+    \begin{center}
+        \begin{tabular}{ | l | l | }
+            \multicolumn{1}{ l }{\textbf{Property Name}} &
+            \multicolumn{1}{ l }{\textbf{Value}} \\
+            \multicolumn{2}{ l }{ } \\
+            \hline
+            Top-Level Source Type & HDL \\
+            \hline
+            Family & Spartan6 \\
+            Device & XC6SLX16 \\
+            Package & CSG324 \\
+            Speed & -3 \\
+            \hline
+            Synthesis tool & XST (VHDL/Verilog) \\
+            Simulator & ISim (VHDL/Verilog) \\
+            Preferred Language & VHDL \\
+            Property Specification in Project File & Store non-default values only \\
+            Manual Compile Orer & (not checked) \\
+            VHDL Source Analysis Standard & VHDL-93 \\
+            \hline
+            Enable Message Filtering & (unchecked) \\
+            \hline
+        \end{tabular}
+        \caption{Xilinx ISE Project Design Properties}
+        \label{table:design-properties}
+    \end{center}
+\end{table}
+
+\section{Tools}
+
+TODO: list all the tools we have used, complete with version numbers etc.

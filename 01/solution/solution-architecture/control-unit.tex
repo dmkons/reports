@@ -1,0 +1,87 @@
+The control unit is a finite state machine that controls the processor.
+Its job is to maintain the control state across cycles, and distribute the correct control signals to the other components in the processor at the right time.
+The finite state machine has three states: fetch, execute and stall.
+It advances to the next state on every cycle, with transitions as illustrated in figure \ref{figure:control-unit-state-machine}.
+In the figure, \texttt{mem} transitions are taken when the currently executed instruction accesses memory.
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm, semithick]
+            \tikzstyle{every state}=[fill=none,draw=black,text=black]
+            \node[initial,state] (fetch)                    {$fetch$};
+            \node[state]         (execute) [right of=fetch] {$execute$};
+            \node[state]         (stall) [right of=execute] {$stall$};
+            \path (fetch) edge node {} (execute)
+                (execute) edge [bend left] node {non-mem} (fetch)
+                (execute) edge node {mem} (stall)
+                (stall) edge [bend right] node {} (fetch);
+        \end{tikzpicture}
+            \caption{Control unit state machine.}
+            \label{figure:control-unit-state-machine}
+    \end{center}
+\end{figure}
+
+Because the control unit is so central to understanding how the solution processor works, its in signals and out signals are described here in detail.
+
+\subsubsection{In Signals}
+
+\begin{description}
+\item{\textbf{Clock}} \\
+The clock signal drives the control unit, letting it know when to progress to the next state, and change its out signals.
+The control unit is one of the only components that are directly driven by a clock, as most of the other components are driven by the control unit, and therefore already inderectly clock driven.
+
+\item{\textbf{Instruction Opcode}} \\
+The instruction opcode signal contains the opcode of the currently executing instruction.
+The control unit uses this signal as the input to its state machine, together with the current state.
+
+\item{\textbf{Instruction Function}} \\
+The instruction function signal contains the alu function of the currently execcuting instruction, if available.
+It is used to help specify out signals in certain special cases.
+
+\item{\textbf{Processor Enable}} \\
+Since the control unit is the driver of the processor, the control unit is the one that must react to the processor enable signal.
+
+\item{\textbf{Reset}} \\
+Again, since the control unit is the driver of the processor, the control unit is the one that must react to the reset signal.
+\end{description}
+
+\subsubsection{Out Signals}
+
+\begin{description}
+    \item{\textbf{Register Destination}} \\
+This signal selects which part of an instruction word contains the destination register of an operation.
+If 1 then the the Register Destination MUX outputs bits 15-11 of the instruction. If 0 then it outputs bits 20-16 of the instruction.
+Either way it feeds this to the Write Register port on the Registers block.
+
+\item{\textbf{Memory To Register}} \\
+This signal decides whether or not a word fetched from memory will be stored in a register.
+
+\item{\textbf{Alu Function}} \\
+This signal forwards the alu function part of the currently executing instruction to whomever else who may need it.
+Notably, recipients include the ALU itself.
+In the suggested architecture, this signal is sent from the ALU control unit.
+However, since the ALU control unit and the regular control unit have been merged in the solution archtecture, this signal is sent from the regular control unit.
+
+\item{\textbf{Memory Write}} \\
+This signal decides whether or not the current value 'at the door of the data memory' so to speak will be accepted and written to the data memory.
+
+\item{\textbf{Alu Source}} \\
+This signal controls whether the input to the ALU comes from a register specified by the instruction word, or from the instruction word itself as an immediate.
+it is the control signal for the ALU Source MUX.
+If 1 then the MUX selects the output from Sign Extend, if 0 it selects the signal from Read Data 2 in the Registers block.
+
+\item{\textbf{Register Write}} \\
+This signal controls whether the current output from the ALU (or sometimes from data memory) will be written to a register).
+
+\item{\textbf{PC Enable}} \\
+This signal decides when it is time for the Program Counter to advance to it's next value.
+This signal is needed because the solution processor is a multi-cycle processor which uses different amount of cycles for different instructions.
+
+\item{\textbf{Jump}} \\
+The Jump signal indicates whether or not the current instruction is a jump instruction.
+If it is, the Jump signal is set to $ 1 $ which causes the jump address to propagate through to the Program Counter.
+
+\item{\textbf{Shift Swap}} \\
+In the MIPS instruction set, there are different instructions to perform shift operations that need different inputs to the ALU in different cases.
+The shift swap swaps some of the ALU input signals in certain cases to be able route the correct input signals at the right time.
+\end{description}

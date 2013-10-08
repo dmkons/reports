@@ -1,0 +1,51 @@
+The solution processor implements a modified subset of the MIPS instruction set.
+A quick reference of the MIPS instruction set can be found in Figure 3.4 of the compendium \cite{compendium}.
+The instructions, as in regular MIPS, can be on one of three general formats, R, I and J.
+
+The solution processor implements the instructions in table \ref{table:implemented-instructions}.
+The processor supports quite a few more instructions than the minimum requirements.
+This is done in alignment with the design goals set for solution processor.
+
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{r|l}
+            \texttt{ADD} & Add \\
+            \texttt{ADDI} & Add immediate \\
+            \texttt{ADDIU} & Add immediate unsigned \\
+            \texttt{ADDU} & Add unsigned \\
+            \texttt{AND} & And \\
+            \texttt{ANDI} & And immediate \\
+            \texttt{BEQ} & Branch if equal \\
+            \texttt{BNE} & Branch not equal \\
+            \texttt{J} & Jump \\
+            \texttt{LUI} & Load upper immediate \\
+            \texttt{LW} & Load word \\
+            \texttt{MULT} & Multiply \\
+            \texttt{MULTU} & Multiply unsigned \\
+            \texttt{NOR} & Nor \\
+            \texttt{OR} & Or \\
+            \texttt{ORI} & Or immediate \\
+            \texttt{PASSTHROUGH} & Passthrough (i.e. send the first input through unmodified) \\
+            \texttt{SLL} & Shift left logical \\
+            \texttt{SLLV} & Shift left logical variable \\
+            \texttt{SLT} & Set less than \\
+            \texttt{SLTI} & Set less than immediate \\
+            \texttt{SLTIU} & Set less than immediate unsigned \\
+            \texttt{SLTU} & Set less than unsigned \\
+            \texttt{SRA} & Shift right arithmetic \\
+            \texttt{SRAV} & Shift right arithmetic variable \\
+            \texttt{SRL} & Shift right logical \\
+            \texttt{SRLV} & Shift right logical variable \\
+            \texttt{SUB} & Subtract \\
+            \texttt{SUBU} & Subtract unsigned \\
+            \texttt{SW} & Store word \\
+            \texttt{XOR} & Xor \\
+            \texttt{XORI} & Xor immediate \\
+        \end{tabular}
+        \smallskip
+        \hrule
+        \smallskip
+        \caption{Implemented instructions}
+        \label{table:implemented-instructions}
+    \end{center}
+\end{table}
