@@ -8,3 +8,32 @@ When the control unit gives the signal, the program counter may perform a branch
 
 TODO: diagram of the program counter cycle.
 
+\subsubsection{Program Counter}
+
+The program counter is implemented as a D-type flip-flop with reset and enable signals.
+
+\subsubsubsection{In Signals}
+
+\begin{description}
+\item{\textbf{Clock}} \\
+
+Clock.
+
+\item{\textbf{Program Counter In}} \\
+
+On rising edge, of the clock, the program counter's new value is fetched from this signal.
+
+\item{\textbf{Reset}} \\
+
+When the reset signal is high, the program counter is reset to 0 on the next rising edge of the clock.
+
+\end{description}
+
+\subsubsubsection{Out Signals}
+
+\begin{description}
+\item{\textbf{Program Counter Out}} \\
+
+This signal is set to the current value of the program counter.
+
+\end{description}
