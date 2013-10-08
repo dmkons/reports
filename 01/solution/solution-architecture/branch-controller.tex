@@ -32,18 +32,16 @@ The opcode signal comes directly from the currently executing instruction word a
 \end{description}
 
 \subsubsection{Out Signals}
-TODO: the architecture diagram has branch, value and zero override enable. Here we have compare zero, compare zero value and branch. which ones is it?
 
 \begin{description}
 \item{\textbf{Compare Zero Value}} \\
 
-TODO: rune must say what this is.
-This is not in the architecture diagram.
+Sometimes it is neccessary to compare to a value of zero that is actually in the range $[-1,1]$.
+This zero value is then put here on this bus.
 
 \item{\textbf{Compare Zero}} \\
 
-TODO: rune must say what this is.
-This is not in the architecture diagram.
+If the compare operation will compare some value x to 0, this signal will override the y operand with the value from compare\_zero\_value.
 
 \item{\textbf{Branch}} \\
 
