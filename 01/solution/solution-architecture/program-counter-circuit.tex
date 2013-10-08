@@ -26,19 +26,15 @@ The program counter is implemented as a D-type flip-flop with reset and enable s
 
 \begin{description}
 \item{\textbf{Clock}} \\
-
 Clock signal.
 
 \item{\textbf{Program Counter In}} \\
-
 The Program Counter's next value.
 
 \item{\textbf{Reset}} \\
-
 When the reset signal is high, the program counter is reset to $-1$\footnote{\texttt{FF FF FF FF}} on the next rising edge of the clock.
 
 \item{\textbf{Program Counter Enable}} \\
-
 Tells the Program Counter whether or not the Program Counter should be updated.
 When this signal is \texttt{1} the Program Counter is updated.
 
@@ -48,7 +44,6 @@ When this signal is \texttt{1} the Program Counter is updated.
 
 \begin{description}
 \item{\textbf{Program Counter Out}} \\
-
 The Program Counter Out signal is the address of the current instruction.
 
 \end{description}

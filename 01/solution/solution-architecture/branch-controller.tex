@@ -33,16 +33,13 @@ The Opcode signal comes directly from the currently executing instruction word a
 
 \begin{description}
 \item{\textbf{Compare Zero Value}} \\
-
 Sometimes it is necessary to compare to a value of zero that is actually in the range $[-1,1]$.
 This zero value is then put on this bus.
 
 \item{\textbf{Compare Zero}} \\
-
 If the compare operation needs to will compare some value $x$ to \texttt{0}, this signal will override the Y operand of the ALU with the value from \texttt{compare\_zero\_value}.
 
 \item{\textbf{Branch}} \\
-
 If the branch controller decides that the program should branch, the Branch signal is set and the next instruction address becomes the current PC+1 added together with the branch offset value.
 In our version of MIPS, the offset is the lower 16 bits on all branch instructions.
 
