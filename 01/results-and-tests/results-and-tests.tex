@@ -14,7 +14,7 @@ It is the hardware design analog of unit testing in regular software development
 These test benches are typically run in simulator software such as ISim or ModelSim, which simulates hardware in an easily measurable and inspectable environment.
 
 Generally, each component made in VHDL should have a corresponding test bench.
-Because a component is typically defined in its own file, a common test bench scheme is to have one file, "\texttt{my\_entity.vhd}", which defined the component, and one file, "\texttt{tb\_my\_entity.vhd}", which defines the test bench for the component.
+Because a component is typically defined in its own file, a common test bench scheme is to have one file, ``\texttt{my\_entity.vhd}'', which defined the component, and one file, ``\texttt{tb\_my\_entity.vhd}'', which defines the test bench for the component.
 Of course, here \texttt{my\_component} is a placeholder name for a component.
 
 In this assignment, each component has an corresponding automatic test bench, which aims to verify correct functionality for a component.
@@ -45,3 +45,12 @@ TODO: write more about this.
 \section{Physical Measurements}
 
 TODO: insert energy efficiency measurements, or something.
+
+This is what the results of such tests may have looked like:
+Audible noise test: low audibility. (there are no moving parts)
+
+Energy consumption test:
+upper bound: <upper bound of the FPGA>
+lower bound: >1 
+
+
