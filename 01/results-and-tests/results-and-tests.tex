@@ -94,6 +94,8 @@ The test bench include tests for the outputs for each of the ALUs supported func
 In addition the subtraction function is tested extra thoroughly.
 This is because of its involvement in the branch operations.
 
+Figure \vref{figure:tb-alu} is a screen capture of the test bench running in ModelSim.
+
 \subsection{Branch Controller Test Bench}
 
 The branch controller is a logical unit that will continuously determine if the ALU should compare to a zero value and whether or not to branch.
@@ -102,10 +104,14 @@ The test will also check each of these operations with their sensitive flag on a
 For good measure we also check that all values are set \texttt{to} 0 when the operation is not a branching operation.
 This last test is not really necessary in the current processor layout as the branching MUX will remove the signal eventually.
 
+Figure \vref{figure:tb-branch-controller} is a screen capture of the test bench running in ModelSim.
+
 \subsection{MUX Test Bench}
 
 The MUX is really quite simple, and so is its test.
 The test puts two different signals on the input ports and reads each of these through each of the input ports.
+
+Figure \vref{figure:tb-mux} is a screen capture of the test bench running in ModelSim.
 
 \subsection{PC Test Bench}
 
@@ -119,6 +125,8 @@ There are several ways the program counter can act:
 \end{itemize}
 The pc test bench confirms that each of these four behaviors work as intended.
 
+Figure \vref{figure:tb-pc} is a screen capture of the test bench running in ModelSim.
+
 
 \subsection{Processor Test Bench}
 
@@ -128,12 +136,64 @@ When the data is ready, the test performs some arithmetical and logical operatio
 In the end the data is written back to memory.
 The purpose of this test is not to cover all the operations, as they are already covered in the ALU test bench, but rather test each class of operation to verify that they work.
 The processor test bench makes sure that all the processor components work together as intended, and that the processor is able to execute memory load and store operations.
+Figure \vref{figure:tb-processor} is a screen capture of the test bench running in ModelSim.
 
 \subsection{Toplevel Test Bench}
 
 \input{results-and-tests/toplevel-test-bench.tex}
 
+Figure \vref{figure:tb-toplevel} is a screen capture of the test bench running in ModelSim.
+
 \section{Testing on the Spartan-6 FPGA}
 
 It is also possible to run tests directly on the FPGA.
 This was unfortunately not done, as the processor was never successfully loaded onto the FPGA.
+
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[keepaspectratio, width=\textwidth]{graphics/tb_alu.PNG}
+		\caption{Screen capture of the ALU test bench running in ModelSim}
+		\label{figure:tb-alu}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[keepaspectratio, width=\textwidth]{graphics/tb_branch_controller.PNG}
+		\caption{Screen capture of the branch controller test bench running in ModelSim}
+		\label{figure:tb-branch-controller}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[keepaspectratio, width=\textwidth]{graphics/tb_mux.PNG}
+		\caption{Screen capture of the MUX test bench running in ModelSim}
+		\label{figure:tb-mux}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[keepaspectratio, width=\textwidth]{graphics/tb_pc.PNG}
+		\caption{Screen capture of the PC test bench running in ModelSim}
+		\label{figure:tb-pc}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[keepaspectratio, width=\textwidth]{graphics/tb_processor.PNG}
+		\caption{Screen capture of the processor test bench running in ModelSim}
+		\label{figure:tb-processor}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[keepaspectratio, width=\textwidth]{graphics/tb_toplevel.PNG}
+		\caption{Screen capture of the toplevel test bench running in ModelSim}
+		\label{figure:tb-toplevel}
+	\end{center}
+\end{figure}
