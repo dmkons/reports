@@ -1,7 +1,7 @@
 The control unit is a finite state machine that controls the processor.
 Its job is to maintain the control state across cycles, and distribute the correct control signals to the other components in the processor at the right time.
 The finite state machine has three states: fetch, execute and stall.
-It advances to the next state on every cycle, with transitions as illustrated in figure \ref{figure:control-unit-state-machine}.
+It advances to the next state on every cycle, with transitions as illustrated in figure \vref{figure:control-unit-state-machine}.
 In the figure, \texttt{mem} transitions are taken when the currently executed instruction accesses memory.
 
 \begin{figure}[h]
