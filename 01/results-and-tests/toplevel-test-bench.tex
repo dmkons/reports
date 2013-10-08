@@ -1,0 +1,163 @@
+The toplevel test bench defines a short program of 16 binary-coded instructions that it uses to test the processor.
+These instructions are helpfully named \texttt{ins0} through \texttt{ins15}.
+A comment in the the test bench refers to a certain \texttt{ins.txt}, which supposedly contains a description of the instructions, but it is nowhere to be found.
+A manually decoded program listing of this program can be found in listing \vref{listing:toplevel-program}.
+
+\begin{listing}
+\begin{center}
+\begin{bytefield}[rightcurly=., rightcurlyspace=0pt, leftcurly=., leftcurlyspace=0pt]{32}
+\bitheader[endianness=big]{0-16,20,21,25,26,31} \\
+
+\begin{rightwordgroup}{\texttt{lw r0, 1(r0)}}
+\begin{leftwordgroup}{\texttt{ins0}}
+\bitbox{6}{op: lw \\ \tiny 100011}
+& \bitbox{5}{rs: r0 \\ \tiny 00000}
+& \bitbox{5}{rt: r1 \\ \tiny 00001}
+& \bitbox{16}{immediate: 1 \\ \tiny 0000000000000001}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{lw r2, 2(r0)}}
+\begin{leftwordgroup}{\texttt{ins1}}
+\bitbox{6}{op: lw \\ \tiny 100011}
+& \bitbox{5}{rs: r0 \\ \tiny 00000}
+& \bitbox{5}{rt: r2 \\ \tiny 00010}
+& \bitbox{16}{immediate: 1 \\ \tiny 0000000000000010}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{lw r2, 2(r0)}}
+\begin{leftwordgroup}{\texttt{ins2}}
+\bitbox{6}{op: lw \\ \tiny 100011}
+& \bitbox{5}{rs: r0 \\ \tiny 00000}
+& \bitbox{5}{rt: r2 \\ \tiny 00010}
+& \bitbox{16}{immediate: 1 \\ \tiny 0000000000000010}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{add r3, r1, r2}}
+\begin{leftwordgroup}{\texttt{ins3}}
+\bitbox{6}{op: r\_all \\ \tiny 000000}
+& \bitbox{5}{rs: r1 \\ \tiny 00001}
+& \bitbox{5}{rt: r2 \\ \tiny 00010}
+& \bitbox{5}{rd: r3 \\ \tiny 00011}
+& \bitbox{5}{sh: 0 \\ \tiny 00000}
+& \bitbox{6}{func: add \\ \tiny 100000}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{sw r3, 5(r0)}}
+\begin{leftwordgroup}{\texttt{ins4}}
+\bitbox{6}{op: sw \\ \tiny 101011}
+& \bitbox{5}{rs: r0 \\ \tiny 00000}
+& \bitbox{5}{rt: r3 \\ \tiny 00011}
+& \bitbox{16}{imm: 5 \\ \tiny 0000000000000101}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{beq r0, r0, 5}}
+\begin{leftwordgroup}{\texttt{ins5}}
+\bitbox{6}{op: beq \\ \tiny 000100}
+& \bitbox{5}{rs: r0 \\ \tiny 00000}
+& \bitbox{5}{rt: r0 \\ \tiny 00000}
+& \bitbox{16}{imm: 5 \\ \tiny 0000000000000101}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{sw r3, 3(r0)}}
+\begin{leftwordgroup}{\texttt{ins6}}
+\bitbox{6}{op: sw \\ \tiny 101011}
+& \bitbox{5}{rs: r0 \\ \tiny 00000}
+& \bitbox{5}{rt: r3 \\ \tiny 00011}
+& \bitbox{16}{imm: 3 \\ \tiny 0000000000000011}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{sw r3, 4(r0)}}
+\begin{leftwordgroup}{\texttt{ins7}}
+\bitbox{6}{op: sw \\ \tiny 101011}
+& \bitbox{5}{rs: r0 \\ \tiny 00000}
+& \bitbox{5}{rt: r3 \\ \tiny 00011}
+& \bitbox{16}{imm: 4 \\ \tiny 0000000000000100}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{sw r3, 6(r0)}}
+\begin{leftwordgroup}{\texttt{ins8}}
+\bitbox{6}{op: sw \\ \tiny 101011}
+& \bitbox{5}{rs: r0 \\ \tiny 00000}
+& \bitbox{5}{rt: r3 \\ \tiny 00011}
+& \bitbox{16}{imm: 6 \\ \tiny 0000000000000110}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{sw r3, 7(r0)}}
+\begin{leftwordgroup}{\texttt{ins9}}
+\bitbox{6}{op: sw \\ \tiny 101011}
+& \bitbox{5}{rs: r0 \\ \tiny 00000}
+& \bitbox{5}{rt: r3 \\ \tiny 00011}
+& \bitbox{16}{imm: 7 \\ \tiny 0000000000000111}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{lui r3, 6(r0)}}
+\begin{leftwordgroup}{\texttt{ins10}}
+\bitbox{6}{op: lui \\ \tiny 001111}
+& \bitbox{5}{rs: r0 \\ \tiny 00000}
+& \bitbox{5}{rt: r3 \\ \tiny 00011}
+& \bitbox{16}{imm: 6 \\ \tiny 0000000000000110}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{sw r3, 8(r0)}}
+\begin{leftwordgroup}{\texttt{ins11}}
+\bitbox{6}{op: sw \\ \tiny 101011}
+& \bitbox{5}{rs: r0 \\ \tiny 00000}
+& \bitbox{5}{rt: r3 \\ \tiny 00011}
+& \bitbox{16}{imm: 8 \\ \tiny 0000000000001000}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{add r1, r3, r3}}
+\begin{leftwordgroup}{\texttt{ins12}}
+\bitbox{6}{op: r\_all \\ \tiny 000000}
+& \bitbox{5}{rs: r1 \\ \tiny 00001}
+& \bitbox{5}{rt: r3 \\ \tiny 00011}
+& \bitbox{5}{rd: r3 \\ \tiny 00011}
+& \bitbox{5}{sh: 0 \\ \tiny 00000}
+& \bitbox{6}{func: add \\ \tiny 100000}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{sw r3, 9(r0)}}
+\begin{leftwordgroup}{\texttt{ins13}}
+\bitbox{6}{op: sw \\ \tiny 101011}
+& \bitbox{5}{rs: r0 \\ \tiny 00000}
+& \bitbox{5}{rt: r3 \\ \tiny 00011}
+& \bitbox{16}{imm: 9 \\ \tiny 0000000000001001}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{beq r0, r0, -3}}
+\begin{leftwordgroup}{\texttt{ins14}}
+\bitbox{6}{op: beq \\ \tiny 000100}
+& \bitbox{5}{rs: r0 \\ \tiny 00000}
+& \bitbox{5}{rt: r0 \\ \tiny 00000}
+& \bitbox{16}{imm: -3 \\ \tiny 1111111111111101}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\begin{rightwordgroup}{\texttt{sw r3, 10(r0)}}
+\begin{leftwordgroup}{\texttt{ins15}}
+\bitbox{6}{op: sw \\ \tiny 101011}
+& \bitbox{5}{rs: r0 \\ \tiny 00000}
+& \bitbox{5}{rt: r3 \\ \tiny 00011}
+& \bitbox{16}{imm: 10 \\ \tiny 0000000000001010}
+\end{leftwordgroup}
+\end{rightwordgroup} \\
+
+\end{bytefield}
+\end{center}
+\caption{The short program in the toplevel test bench}
+\label{listing:toplevel-program}
+\end{listing}

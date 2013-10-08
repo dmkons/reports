@@ -1,10 +1,19 @@
-Discuss the assignment and your achievements.
-You are free to critically assess your work:
-what could have been done better, which way you would choose to go if given the same task again etc.
-
 This chapter discusses the performance and test results of the presented solution processor, as well as the assignment it self and the work process around it.
 
-\section{Industry Standard Best Practices}
+\section{Requirements}
+
+The assignment's main requirement, which was to ``simple multi-cycle MIPS architecture''~\cite[p.114]{compendium}, was met.
+It was based on a suggested MIPS-like architecture presented in Figure 4.1~\cite[p.115]{compendium} in the course compendium, as was required.
+The required instructions (see table \ref{table:required-instructions} have been implemented for the processor, as well as a vast array of additional and more complex instructions (see figure \ref{table:implemented-instructions}.
+The processor was exensively tested at different levels of abstraction using in several simulation environments, which was a requirement that was met.
+Finally, the processor was to be tested on a hardware platform.
+This requirement was not met.
+
+\section{Additional Goals}
+
+Did we meet the goals? 
+
+\subsection{Industry Standard Best Practices}
 
 Did we meed the goal about conforming to industry standards?
 What are the industry standards?
@@ -12,7 +21,7 @@ What are the industry standards?
 VHDL is a language defined by standards laid forth by IEEE, the Institute of Electrical and Electronics Engineers.
 In order to write good VHDL, it is best to use IEEE-sanctioned standard libraries.
 
-\subsection{\texttt{numeric\_std}}
+\subsubsection{\texttt{numeric\_std}}
 
 
 For doing arithmetic operations on logic vectors in VHDL, many resources (TODO: cite! websites, tutorials, books) will suggest using the functionality provided in the packages \texttt{ieee.std\_logic\_arith} and \texttt{ieee.std\_logic\_unsigned}.
@@ -36,7 +45,7 @@ In the solution VHDL code, all arithmetical operations are sanely implemented us
 
 TODO: citation to this thing might be a good idea: http://vhdlguru.blogspot.no/2010/03/why-library-numericstd-is-preferred.html .
 
-\subsection{Test Coverage}
+\subsubsection{Test Coverage}
 
 The solution processor has very good simulation test coverage.
 Every custom entity in the solution VHDL code has its own extensive test bench, which uses the custom-made convenience functions from the \texttt{test\_utils} package.
@@ -44,16 +53,16 @@ Unfortunately, the solution processor was never tested physically on the FPGA, d
 
 To improve the test coverage, the obvious next step is to load the solution processor onto an FPGA and run the same tests on the physical board.
 
-\subsection{Additional industry standards?}
+\subsubsection{Additional industry standards?}
 
 TODO: Lets google some stuff and shoehorn it into this report.
 
-\section{Instruction Set}
+\subsection{Instruction Set}
 
 To what extent did we meet the design goal of having a large instruction set?
 Was it a good idea to choose this as a design goal? (Hint: no).
 
-\section{Performance}
+\subsection{Performance}
 
 The presented solution processor performs rather well for a sequential simple multi cycle processor.
 The clock's maximum speed is (TODO: insert max clock speed).

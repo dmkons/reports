@@ -31,6 +31,13 @@
 
 \usepackage{calc}
 \usepackage{enumitem}
+\usepackage{varioref}
+
+\usepackage{bytefield}
+
+\usepackage{float}
+\newfloat{listing}{htbp}{lol}[chapter]
+\floatname{listing}{Listing}
 
 \usepackage{pgf}
 \usepackage{tikz}
@@ -76,10 +83,10 @@ TDT4255 Computer Design, NTNU}
 \tableofcontents
 
 \listoffigures
-% this produces a list of figures, but not the figures' labels :\
 
 \listoftables
 
+\listof{listing}{List of Listings}
 
 \chapter{Introduction}
 
