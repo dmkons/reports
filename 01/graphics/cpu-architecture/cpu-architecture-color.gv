@@ -20,7 +20,7 @@ digraph graphname {
 
     "Control Unit" [style="filled" fillcolor="olivedrab2" label="<f0> Control Unit | {{ <inst> Instruction | <processorenable> processor enable | <clock> clock | <reset> reset} | {  <regdest> register destination | <regwrite> register write | <alusource> ALU source | <alufunc> ALU function | <memw> Memory write |<memtoreg> Memory to register |  <jump> jump | <shiftswap> shift swap | <pcenable> PC Enable }}"];
 
-    "Branch Controller" [style="filled" fillcolor="brown1" label="<f0> Branch Controller | {{<opcode> opcode | <negative> negative | <zero> zero | <carry> carry | <overflow> overflow } | { <branch> branch | <zerooverride> zero override enable | <value> value }}"];
+    "Branch Controller" [style="filled" fillcolor="brown1" label="<f0> Branch Controller | {{<opcode> opcode | <negative> negative | <zero> zero | <carry> carry | <overflow> overflow } | { <branch> branch | <zerooverride> compare zero | <value> compare zero value }}"];
 
     "ALU" [label="<f0> ALU | {{<func> Function | <x> X | <y> Y} | {<r> R | <negative> Negative | <zero> Zero | <carry> Carry | <overflow> Overflow }}"];
 
