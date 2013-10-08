@@ -64,7 +64,7 @@ digraph graphname {
     "Instruction Memory":inst -> "Register Destination MUX":1 [label="Inst[15-11]" style="bold" color="magenta4"];
     "Instruction Memory":inst -> "Concat" [label="Inst[25-0]" style="bold" color="magenta4"];
     "Instruction Memory":inst -> "Control Unit":inst [ style="bold" color="magenta4"];
-    "Instruction Memory":inst -> "Sign Extend" [label="16" arrowhead="rcrowlvee" style="bold" color="magenta4"];
+    "Instruction Memory":inst -> "Sign Extend" [label="Inst[16-0]   16" arrowhead="rcrowlvee" style="bold" color="magenta4"];
     "Instruction Memory":inst -> "Branch Controller":opcode [label="Inst[31-26]" style="bold" color="magenta4"];
 
     "Sign Extend" -> SignExtendHolder [label="32" arrowhead="rcrowlvee"  style="bold" color="magenta4"];
