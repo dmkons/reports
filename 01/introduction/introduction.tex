@@ -7,7 +7,7 @@ A summery of the assignment can be found in section 4.1 of the compendium~\cite[
 \begin{quote}
 ``In this assignment, you will design a simple multi-cycle MIPS processor in VHDL and synthesize your design by following the procedure described in Chapter 2~\cite[of the compendium]{compendium}.
 You will also verify the behaviour of the implemented MIPS processor using the ModelSim simulator.
-Once your design is verified, you will integrate the MIPS processor into a MicroBlaze-based embedded system as a peripheral core, implement the embedded system design in FPGA\footnote{It was assumed that the assignment author means "VHDL" here} and the designed processor in an FPGA.''
+Once your design is verified, you will integrate the MIPS processor into a MicroBlaze-based embedded system as a peripheral core, implement the embedded system design in FPGA\footnote{It was assumed that the assignment author means ``VHDL'' here} and the designed processor in an FPGA.''
 \end{quote}
 
 \subsection{Requirements}
@@ -40,14 +40,14 @@ These are listed in Table \vref{table:required-instructions}.
     \end{center}
 \end{table}
 
-Note: the assignment text required the \texttt{LDI} (Load Immediate) instruction to be implemented.
+Note: the assignment text required the ``\texttt{LDI} (Load Upper Immediate)''\footnote{Verbatim from \cite[p.114]{compendium}} instruction to be implemented.
 However in MIPS, \texttt{LDI} is not an instruction.
 The closest match in MIPS is the instruction called \texttt{LUI} (Load Upper Immedate).
 This instruction loads an immediate, but also shifts it to put it in the upper half of the destination register.
 As LUI does not do exactly what LDI would have done, a new instruction \texttt{LLI} (Load Lower Immediate), takes \texttt{LDI}'s place in the instruction requirements table.
 
 Implementing more instructions than the aformentioned is optional.
-The instruction set implemented by the solution processor is detailed in section [THE SECTION ABOUT THE ISA].
+The instruction set implemented by the solution processor is detailed in section \vref{sec:instruction-set}.
 
 Once the processor is designed, it must also be verified in a simulation environment as well as in a hardware platform.
 
@@ -65,18 +65,13 @@ This goal was chosen because the industry has many, many years of combined exper
 \subsection{A Large and Diverse Instruction Set}
 
 The second solution goal is that the solution processor should support as much of the MIPS I instruction set as possible.
-It should ideally behave functionally equivalent as other MIPS I processors.
-The reasoning behind this is that the closer the solution processor resembles a regular MIPS processor, the more can existing tools made for other MIPS processors be used for the solution processor.
+It should ideally be functionally equivalent to other MIPS I processors.
+The reasoning behind this is that the closer the solution processor resembles a regular MIPS processor, the easier it is to employ existing tools, made for other MIPS processors, with the solution processor.
 This allows for things like an existing MIPS-supporting C compiler to compile regular C code to run on the solution processor.
 
 \subsection{Performance}
 
 The third and least prioritized solution goal is that the processor should not be slow.
-That means that when an architectural or implementation desicion must be made, the more choice with a more processor performant outcome should be chosen, as long as it does not conflict with the other design goals.
-This means that it is ok to sacrifice processor performance if it means that the processor better conforms to industry standards, or that the processor can support more instruction.
+That means that when an architectural or implementation desicion must be made, the choice with a more processor performant outcome should be chosen, as long as it does not conflict with the other design goals.
+This means that it is ok to sacrifice processor performance if doing so results in better conformance to industry standards or support for more instructions.
 
-
-
-ADDING SOME RANDOM NOTES:
-
-when doing number of software accessible registers in the tuts: 5!
