@@ -28,7 +28,7 @@ Because the control unit is so central to understanding how the solution process
 \begin{description}
 \item{\textbf{Clock}} \\
 The clock signal drives the control unit, letting it know when to progress to the next state, and change its out signals.
-The control unit is one of the only components that are directly driven by a clock, as most of the other components are driven by the control unit, and therefore already inderectly clock driven.
+The control unit is one of the only components that are directly driven by a clock, as most of the other components are driven by the control unit, and therefore already indirectly clock-driven.
 
 \item{\textbf{Instruction Opcode}} \\
 The instruction opcode signal contains the opcode of the currently executing instruction.
@@ -48,40 +48,44 @@ Again, since the control unit is the driver of the processor, the control unit i
 \subsubsection{Out Signals}
 
 \begin{description}
-    \item{\textbf{Register Destination}} \\
+\item{\textbf{Register Destination}} \\
 This signal selects which part of an instruction word contains the destination register of an operation.
-If 1 then the the Register Destination MUX outputs bits 15-11 of the instruction. If 0 then it outputs bits 20-16 of the instruction.
-Either way it feeds this to the Write Register port on the Registers block.
+If \texttt{1} then the the Register Destination MUX outputs bits 15-11 of the instruction. If \texttt{0} then it outputs bits 20-16 of the instruction.
+Either way the Register Destination MUX feeds this to the Write Register port on the Registers block.
 
 \item{\textbf{Memory To Register}} \\
 This signal decides whether or not a word fetched from memory will be stored in a register.
 
 \item{\textbf{Alu Function}} \\
-This signal forwards the alu function part of the currently executing instruction to whomever else who may need it.
-Notably, recipients include the ALU itself.
+This signal forwards the alu function part of the currently executing instruction to whatever other components may need it.
+In the solution architecture, the ALU is the only component that receives the alu function signal.
 In the suggested architecture, this signal is sent from the ALU control unit.
 However, since the ALU control unit and the regular control unit have been merged in the solution archtecture, this signal is sent from the regular control unit.
 
 \item{\textbf{Memory Write}} \\
-This signal decides whether or not the current value 'at the door of the data memory' so to speak will be accepted and written to the data memory.
+This signal decides whether or not the current value ``at the door of the data memory'' so to speak will be accepted and written to the data memory.
 
 \item{\textbf{Alu Source}} \\
 This signal controls whether the input to the ALU comes from a register specified by the instruction word, or from the instruction word itself as an immediate.
-it is the control signal for the ALU Source MUX.
-If 1 then the MUX selects the output from Sign Extend, if 0 it selects the signal from Read Data 2 in the Registers block.
+It is the control signal for the ALU Source MUX.
+If it is \texttt{1} then the ALU Source MUX selects the output from Sign Extend, if \texttt{0} it selects the signal from Read Data 2 in the Registers block.
 
 \item{\textbf{Register Write}} \\
-This signal controls whether the current output from the ALU (or sometimes from data memory) will be written to a register).
+This signal controls whether the current output from the ALU (or sometimes from data memory) will be written to a register.
 
 \item{\textbf{PC Enable}} \\
-This signal decides when it is time for the Program Counter to advance to it's next value.
-This signal is needed because the solution processor is a multi-cycle processor which uses different amount of cycles for different instructions.
+This signal decides when it is time for the Program Counter to advance to its next value, i.e. when it should update the PC Out signal to equal PC In.
+It is needed because the solution processor is a multi-cycle processor which uses different amount of cycles for different instructions.
 
 \item{\textbf{Jump}} \\
 The Jump signal indicates whether or not the current instruction is a jump instruction.
-If it is, the Jump signal is set to $ 1 $ which causes the jump address to propagate through to the Program Counter.
+If it is, the Jump signal is set to \texttt{1} which causes the jump address to propagate through to the Program Counter.
 
 \item{\textbf{Shift Swap}} \\
-In the MIPS instruction set, there are different instructions to perform shift operations that need different inputs to the ALU in different cases.
+In the MIPS instruction set there are different instructions to perform shift operations that need different inputs to the ALU in different cases.
 The shift swap swaps some of the ALU input signals in certain cases to be able route the correct input signals at the right time.
+Specifically, if the shift swap signal is set to \texttt{1} the Shift Swap MUX outputs read data 2.
+If it is \texttt{0} the output is read data 1.
+The Shift Swap MUX's output goes to the ALU's X port.
+
 \end{description}
