@@ -32,6 +32,7 @@ The opcode signal comes directly from the currently executing instruction word a
 \end{description}
 
 \subsubsection{Out Signals}
+TODO: the architecture diagram has branch, value and zero override enable. Here we have compare zero, compare zero value and branch. which ones is it?
 
 \begin{description}
 \item{\textbf{Compare Zero Value}} \\
@@ -46,7 +47,6 @@ This is not in the architecture diagram.
 
 \item{\textbf{Branch}} \\
 
-If the branch controller decides that the program should branch, the Branch signal is set.
-
+If the branch controller decides that the program should branch, the Branch signal is set and the next instruction address becomes the current PC+1 added together with the offset (the lower 16 bits of the branch instruction) instead of PC+1.
 
 \end{description}
