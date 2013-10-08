@@ -16,9 +16,9 @@ digraph graphname {
     "Sign Extend" [ shape="circle" label="sign\n extend"];
 
     "Control Unit" [style="filled" fillcolor="olivedrab2" label="<f0> Control Unit | {{ <inst> Instruction} | {<alusource> ALU source | <regwrite> register write | <regdest> register destination | <memtoreg> Memory to register | <memw> Memory write | <jump> jump | <alufunc> ALU function }}"];
-    "Branch Controller" [style="filled" fillcolor="brown1" label="<f0> Branch Controller | {{<opcode> opcode | <negative> negative | <zero> zero } | { <branch> branch | <zerooverride> zero override enable | <value> value }}"];
+    "Branch Controller" [style="filled" fillcolor="brown1" label="<f0> Branch Controller | {{<opcode> opcode | <negative> negative | <zero> zero | <carry> carry | <overflow> overflow } | { <branch> branch | <zerooverride> zero override enable | <value> value }}"];
 
-    "ALU" [label="<f0> ALU | {{<func> Function | <x> X | <y> Y} | {<r> R}}"];
+    "ALU" [label="<f0> ALU | {{<func> Function | <x> X | <y> Y} | {<r> R | <negative> Negative | <zero> Zero |<carry> Carry | <overflow> Overflow }}"];
 
     "Registers" [style="filled" fillcolor="lightsteelblue"  label="<f0> Registers | {{<readreg1> Read register 1 | <readreg2> Read register 2 | <wreg> Write register | <wdata> Write data | <regwrite> register write} | {<readdata1> Read data 1 | <readdata2> Read data 2}} "];
 
@@ -79,8 +79,10 @@ digraph graphname {
 
     "ALU":r -> "Data Memory":"address";
     "ALU":r -> "Memory to Register MUX":0;
-    "ALU":r -> "Branch Controller":"zero";
-    "ALU":r -> "Branch Controller":"negative";
+    "ALU":zero -> "Branch Controller":"zero";
+    "ALU":negative -> "Branch Controller":"negative";
+    "ALU":overflow -> "Branch Controller":overflow;
+    "ALU":carry -> "Branch Controller":carry;
 
     "Data Memory":"rdata" -> "Memory to Register MUX":1;
 
