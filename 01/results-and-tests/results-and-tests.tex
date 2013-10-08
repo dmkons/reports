@@ -1,10 +1,79 @@
-Presents the results: what has been successfully completed and what did not work.
-If any ways around it were found, provide them at this place.
-Every solution should be tested for its validity.
-This is the place where you will describe what kind of testing you have performed and what the outcome of your tests was.
-
 Testing is an important part of any kind of development, be it software development or other kinds of development.
 This section presents the different kinds of tests performed.
+
+\section{Performance}
+
+Using performance optimization ideas from \cite{xilinx-speed-strategies},
+TODO: Odd help me cite this: http://www.xilinx.com/itp/xilinx10/isehelp/ise\_c\_xst\_speed\_strategies.htm
+different synthesization settings were tested and measured to see what gave the best results.
+Performance was measured using the maximum frequency estimate output by the XST synthesize process.
+Higher maximum frequency is better.
+
+Before optimization, with only default settings, the maximum frequency was given as 42.793Mhz.
+When synthesizing with the "disable dsp usage" on, the maximum frequency rose to 55.117Mhz, at the cost of a longer runtime for the synthesis process.
+Disabling resource sharing when synthesizing further increased the maximum frequency to 56.277Mhz.
+Interestingly, increasing the optimization level from "Normal" to "High" yielded lower results.
+All the other settings (all were tested) showed no difference, so they were kept at the default values.
+
+\section{Energy Efficiency}
+
+Because the processor has not been successfully run on an FPGA, it is diffucult to perform meaningful energy efficiency testing.
+However, ISE provides a "Generate Power Data" process, which can be used to assess ballpark measurements.
+Table \vref{table:power-data} shows generated power data.
+The synthesis process offers a setting called "Power Reduction".
+This setting has no effect on the generated power data.
+
+\begin{table}
+
+\begin{center}
+\begin{tabular}{ | l | r | r | r | r | }
+\hline
+\multicolumn{5}{ | c | }{On-Chip Power Summary} \\
+\hline
+On-Chip & Power (mW) & Used & Available & Utilization (\%) \\
+\hline
+Clocks & 0.04 & 1 & --- & --- \\
+Logic & 0.00 & 3134 & 9112 & 34 \\
+Signals & 0.00 & 3762 & --- & --- \\
+IOs & 0.00 & 138 & 232 & 59 \\
+BlockRAM/FIFO & 0.00 & --- & --- & --- \\
+- 8K BlockRAM & 0.00 & 2 & 64 & 3 \\
+- 16K BlockRAM & 0.00 & 0 & 32 & 0 \\
+Quiescent & 14.84 & & & \\
+Total & 14.89 & & & \\
+\hline
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\multicolumn{4}{ | c |}{Power Supply Summary} \\
+\hline
+ & Total & Dynamic & Quiescent \\
+\hline
+Supply Power (mW) & 14.89 & 0.04 & 14.84 \\
+\hline
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{ | l | r | r | r | r |}
+\hline
+\multicolumn{5}{ | c | }{Power Supply Currents} \\
+\hline
+\multicolumn{1}{ | c | }{Supply Source} & Supply Voltage & Total Current (mA) & Dynamic Current (mA) & Quiescent Current (mA) \\
+\hline
+Vccint & 1.200 & 6.12 & 0.04 & 6.08 \\
+Vccaux & 2.500 & 3.02 & 0.00 & 3.02 \\
+Vcco25 & 2.500 & 0.00 & 0.00 & 0.00 \\
+\hline
+\end{tabular}
+
+\caption{Generated Power Data}
+\label{table:power-data}
+\end{center}
+\end{table}
 
 \section{VHDL Test Benches}
 
@@ -41,16 +110,3 @@ TODO: Something about this test bench.
 
 It is also possible to run toplevel test benches directly on the FPGA (I think).
 TODO: write more about this.
-
-\section{Physical Measurements}
-
-TODO: insert energy efficiency measurements, or something.
-
-This is what the results of such tests may have looked like:
-Audible noise test: low audibility. (there are no moving parts)
-
-Energy consumption test:
-upper bound: <upper bound of the FPGA>
-lower bound: >1 
-
-
