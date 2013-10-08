@@ -1,1 +1,28 @@
-The multiplexer... do we even need to talk about it? Yes, because it pads the report!
+The multiplexer is a simple regular multiplexer implemented as a VHDL entity, for tidyness and modularity.
+Although quite trivial, it is documented here for completeness.
+
+\subsubsection{In Signals}
+
+\begin{description}
+\item{\textbf{Input 0}} \\
+
+A generic \texttt{std\_logic\_vector} input.
+
+\item{\textbf{Input 1}} \\
+
+A generic \texttt{std\_logic\_vector} input.
+
+\item{\textbf{Selector}} \\
+
+A boolean select signal that selects either Input 0 or Input 1 to be passed on as output.
+
+\end{description}
+
+\subsubsection{Out Signals}
+
+\begin{description}
+\item{\textbf{Output}} \\
+
+Input 0 or Input 1, decided by the Selector.
+
+\end{description}
