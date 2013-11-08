@@ -1,0 +1,66 @@
+\documentclass[10pt]{report}
+	% set document class
+	% default font size is 10pt
+
+\usepackage[utf8]{inputenc} 
+	% set input encoding (not needed with XeLaTeX)
+
+\usepackage{cite}
+\usepackage{url}
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper}
+% or letterpaper (US) or a5paper or....
+
+\usepackage{graphicx}
+	% support for the \includegraphics command and options
+
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage{varioref} % gives us \vref
+\usepackage{rotfloat} % allows floats to be rotated
+
+\usepackage{bytefield}
+
+\usepackage{dirtree} % for makin' directory trees (see Deriverables section)
+
+\usepackage{float}
+\newfloat{listing}{htbp}{lol}[chapter]
+\floatname{listing}{Listing}
+
+\usepackage{pgf}
+\usepackage{tikz} % we use this for state machine drawings and stuff
+\usetikzlibrary{arrows,automata}
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{Assignment \#1, TDT4255 Computer Design}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+%\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+\newcommand{\subsubsubsection}{\paragraph}
+
+\newcommand\todo[1]{\textcolor{red}{TODO: #1}}
+\newcommand\cn{\textcolor{red}{[citation needed]}}

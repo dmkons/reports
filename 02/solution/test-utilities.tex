@@ -1,0 +1,9 @@
+\todo{Update this}
+
+VHDL supports a basic \texttt{assert} statement that can be used to programatically compare simulated values against expected results. With the optional \texttt{report} keyword it can additionally print a string to the console if the assertion fails.
+VHDL's support for automatic non-data-driven unit testing beyond the basic \texttt{assert} statement is rather lacking.
+Specifically, it shows neither the expected value of the assertion, nor the actual value found.
+Because of this, a VHDL package called \texttt{test\_utils} was written and submitted as a solution component.
+It contains a convenient testing function, creatively called \texttt{test}.
+It supports printing expected values and actual found values, as well as a simple tagging and naming system.
+The latter makes it easier to give meaningful names to the different asserts in a test bench.
