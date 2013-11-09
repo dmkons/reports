@@ -53,6 +53,8 @@ This section contains a description list of the tools used for the assignment.
         Used for configuring the FPGA.
     \item{\textbf{Text editors}} \\
         Sublime Text 2, Vim 7.3, Notepad (©Copyright Microsoft Corporation).
+    \item{\textbf{GHDL 0.29 (2010109) [Sokcho edition]}} \\
+
     \item{\textbf{GNU command-line tools}} \\
         Grep, sed, find, etc.
     \item{\textbf{git 1.8.1.2}} \\
@@ -71,6 +73,45 @@ This section contains a description list of the tools used for the assignment.
     For connecting the FPGA board to the development computer.
 \end{description}
 
-\todo{The linux tool chain, it works and deserves a place in here!}
 
-\bigskip
+\subsection{Linux Tool Chain}
+
+In addition to the Windows-based proprietary Xilinx tool chain available in the lab\cn, a Linux-based free open source tool called GHDL was used.
+GHDL is the leading open source VHDL compiler\cn, and offers many benefits over the clunky Xilinx tool chain for rapid development and iteration.
+Although it is not as feature-rich as the Xilinx tools, and does not offer critical functionality such as synthesizing, it out-performs Xilinx in other areas.
+Two areas in which it excels are intelligent error messages during analysis, and speed of compilation.
+As a comparison, consider a typical error message from Xilinx ISE in figure \vref{figure:xilinx-error-message}, and compare it to the error message produced by GHDL for the same error in \vref{figure:ghdl-error-message}.
+This error was produced by removing the keyword \texttt{begin} from the architecture begin statement of the \texttt{flip\_flip} entity.
+Especially dumbfounding is the error message in figure \vref{figure:xilinx-error-message} referring to an \texttt{is\_x}.
+At no point in the VHDL code is there any string even remotely resembling \texttt{is\_x}.
+The GHDL error message in figure \vref{figure:ghdl-error-message}, on the other hand, is short and concise, and actually tells the programmer exactly what is wrong, and what can be done to fix it.
+
+\begin{figure}
+\texttt{
+flip\_flop.vhd:17:5: object class keyword such as 'variable' is expected
+flip\_flop.vhd:21:9: 'begin' is expected instead of 'elsif'
+}
+\begin{center}
+\caption{A typical error message from GHDL.}
+\label{figure:ghdl-error-message}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\texttt{
+Line 27: Syntax error near "flip\_flop".\\
+Line 27: Expecting type  void for <flip\_flop>.\\
+Line 29: Syntax error near "behavioral".\\
+Line 29: Expecting type  void for <behavioral>.\\
+Line 32: Expecting type  void for <ieee>.\\
+Line 33: is\_x is not a  void\\
+Line 33: Formal <s> has no actual or default value.\\
+s is declared here\\
+Line 35: Syntax error near "entity".\\
+...\\
+}
+\begin{center}
+\caption{A typical error message from Xilinx ISE.}
+\label{figure:xilinx-error-message}
+\end{center}
+\end{figure}
