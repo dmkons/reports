@@ -1,13 +1,26 @@
-This report presents a solution to ``Assignment \#2 - \todo{What is the name of the assignment?}'' of the autumn 2013 course TDT4255 Computer Design at NTNU.
+This report presents a solution to ``Assignment \#2 - An Optimized Pipelined Processor'' of the autumn 2013 course TDT4255 Computer Design at NTNU.
 
 \section{Assignment}
 
-\todo{What is the assignment?}
+The assignment is to implement an optimized pipelined processor in VHDL, and implement it on a Xilinx Spartan 6 FPGA.
+The processor must be performance-optimized using hazard detection and correction techniques.
 
 \subsection{Requirements}
 
-\todo{What are the requirements?}
+The major requirement of the assignment is a simple 5-staged pipelined processor\cn.
+Additionally, hazard detection and correction techniques must be implemented.
 
 \section{Goals}
 
-\todo{Do we have any additional goals? What are they?}
+In addition to the requirements set forth by the assignment, some additional design goals have been decided upon.
+These goals have been chosen based on what went well, and what could have gone better in the previous assignment\cn.
+
+\subsection{Simplicity}
+
+Reflecting on the previous assignment\cn, the biggest flaw was that the processor was never successfully run on a physical FPGA.
+In retrospect, this was because a too large feature scope was selected, which resulting in there not being enough time to compile the processor onto the FPGA after its completion.
+For this assignment, simplicity is a design goal in the hope that there will be enough time to complete physical testing of the processor on an FPGA.
+
+\subsection{Performance}
+
+\todo{this}
