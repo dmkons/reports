@@ -2,7 +2,7 @@
 
 The Xilinx ISE project was set up with the design properties as in table \vref{table:design-properties}.
 
-\begin{table}
+\begin{table}[H]
     \begin{center}
         \begin{tabular}{ | l | l | }
             \multicolumn{1}{ l }{\textbf{Property Name}} &
@@ -54,6 +54,7 @@ This section contains a description list of the tools used for the assignment.
     \item{\textbf{Text editors}} \\
         Sublime Text 2, Vim 7.3, Notepad (©Copyright Microsoft Corporation).
     \item{\textbf{GHDL 0.29 (2010109) [Sokcho edition]}} \\
+        Free open source VHDL simulator frontend for GCC.
 
     \item{\textbf{GNU command-line tools}} \\
         Grep, sed, find, etc.
@@ -65,11 +66,11 @@ This section contains a description list of the tools used for the assignment.
 
 \subsection{Hardware}
 \begin{description}
-\item{\textbf{Xilinx Spartan-6 XC6SLX16 CSG324}}
+\item{\textbf{Xilinx Spartan-6 XC6SLX16 CSG324}} \\
     FPGA board.
-\item{\textbf{Development PC, Windows 7}}
+\item{\textbf{Development PC, Windows 7}} \\
     For development.
-\item{\textbf{Mini USB cable}}
+\item{\textbf{Mini USB cable}} \\
     For connecting the FPGA board to the development computer.
 \end{description}
 
@@ -88,7 +89,6 @@ The GHDL error message in figure \vref{figure:ghdl-error-message}, on the other 
 
 \begin{figure}
 \texttt{
-flip\_flop.vhd:17:5: object class keyword such as 'variable' is expected
 flip\_flop.vhd:21:9: 'begin' is expected instead of 'elsif'
 }
 \begin{center}
