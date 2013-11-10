@@ -12,6 +12,16 @@ It was attempted programmed onto a Xilinx Spartan-6 LX16 FPGA.
 
 \input{solution/instruction-set.tex} \label{sec:instruction-set}
 
+\section{Assembler}
+
+Bundled with the processor comes an assembler written in Python.
+The modular and extensible assembler assembles the instruction set described in section \vref{section:instruction-set}.
+It also supports labels and comments.
+The assembler is hazard-aware, and will resolve use-after-load hazards by inserting nop instructions in the correct places to ensure correct execution on the processor.
+
+Having an assembler also opens for the possibility of introducing pseudo-instructions, which are instructions that are converted into other instructions by the compiler.
+As mentioned in section \vref{section:instruction-set}, a handful of pseudo-instructions are supported.
+
 \section{Test Utilities}
 
 \input{solution/test-utilities.tex}
