@@ -11,7 +11,11 @@ This section presents the different kinds of tests performed.
 
 \section{VHDL Test Benches}
 
-\todo{This. Also, remember images}
+Every component designed in VHDL has a corresponding test bench.
+Informally, every \texttt{*.vhd} file has a \texttt{tb\_*.vhd} file.
+Testing every component individually ensures a high quality processor implementation, as it is easy to find, isolate and correct bugs.
+
+The test benches were simulated using ISim. See appendix \todo{add an appendix with tb test results, images} for the test results from the individual test benches. 
 
 \section{Testing on the Spartan-6 FPGA}
 
