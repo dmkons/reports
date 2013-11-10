@@ -1,0 +1,11 @@
+\todo{image of fetch stage}
+
+The instruction fetch stage is the first stage in the processor pipeline.
+It is responsible for fetching the correct instruction from the instruction memory, and feeding it to the next stage in the pipeline.
+
+\newpage
+\subsubsection{Program Counter}
+In order to know where in the program the processor is currently executing, a program counter is needed.
+The program counter is a simple register which holds the instruction address of the address currently being fetched and sent on to the next stage in the pipeline.
+The instruction fetch stage updates the program counter each cycle, either by increasing it by one so as to fetch the next instruction, or by to a different number requested by a different part of the processor, in the case of a jump.
+

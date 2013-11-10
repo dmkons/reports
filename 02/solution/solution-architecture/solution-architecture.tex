@@ -1,45 +1,40 @@
 \todo{Generally describe the solution architecture}
 
+The processor architecture is a MIPS-inspired pipelined architecture with five stages.
+The five stages are called Instruction Fetch, Instruction Decode, Execution, Memory and Write Back.
+Each stage is separated by pipeline registers that hold the relevant data for the different stages between clock cycles.
+With a pipelined design, a processor is vulnerable to data hazards and control hazards \todo{explain what hazards are somewhere?}.
+The processor resolves hazards by using a combination of data forwarding and stalling.
+One type of hazard, the use-after-load\cn hazard is not handled by the processor, and trying to execute an instruction which uses the result from a load immediately after the load instruction results in undefined behaviour.
+Instead of handling this in hardware, the bundled solution assembler solves this issue by instruction reordering, or simply inserting nops where needed.
+\todo{name-drop harvard architecture in here somewhere.}
+
 \todo{Solution architecture image}
 
 The rest of this section describes the different architectural subcomponents in detail.
 
-\todo{detailed description of the components}
-
-
-
+\newpage
 \subsection{Instruction Fetch Stage}
-\newpage
-\subsubsection{Register File}
-\newpage
-\subsubsection{Instruction Memory}
+    \input{solution/solution-architecture/if-stage/if-stage.tex}
+
 \newpage
 \subsection{Instruction Decode Stage}
-\newpage
-\subsubsection{Control Unit}
+    \input{solution/solution-architecture/id-stage/id-stage.tex}
+
 \newpage
 \subsection{Execution Stage}
-\newpage
-\subsubsection{ALU}
-\input{solution/solution-architecture/alu.tex}
-\newpage
-\subsubsection{Forwarding Unit}
-\newpage
-\subsubsection{Hazard Detector}
+    \input{solution/solution-architecture/ex-stage/ex-stage.tex}
+
 \newpage
 \subsection{Memory Stage}
-\newpage
-\subsubsection{Data Memory}
+    \input{solution/solution-architecture/mem-stage/mem-stage.tex}
+
 \newpage
 \subsection{Write-Back Stage}
+    \input{solution/solution-architecture/wb-stage/wb-stage.tex}
+
 \newpage
 \subsection{Additional Components}
-\newpage
-\subsubsection{Pipeline Registers}
-\newpage
-\subsubsection{Flip Flop}
-\newpage
-\subsubsection{Multiplexors}
-\newpage
+    \input{solution/solution-architecture/additional-components/additional-components.tex}
 
 \todo{more?}
