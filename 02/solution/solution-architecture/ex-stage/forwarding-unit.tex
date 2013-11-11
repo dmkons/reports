@@ -1,27 +1,38 @@
-\todo{The Forwarding Unit description}
+The forwarding unit is responsible for forwarding newly computed data from later stages in the pipeline to earlier stages, where new instructions might need the data before they are commited to registers at the end of the pipeline.
+The forwarding unit is essential to achieving a high performance pipelined design, as without it computations would either be wrong or slow.
+
+The forwarding unit looks at which data is needed in the execution stage, and if the needed data has been updated down the pipeline but not in the register file, forwards the data to the ALU instead of the old data fetched from the register file by the instruction decode stage.
+To be able to do this, the forwarding unit needs data from many different stages at once.
 
 \subsubsection{In Signals}
 
 \begin{description}
 \item{\textbf{rs\_address\_from\_id\_ex}} \\
-Description of it.
+    The source register address of the Rs operand from the ID/EX pipeline registers.
+
 \item{\textbf{rt\_address\_from\_id\_ex}} \\
-Description of it.
+    The source register address of the Rs operand from the ID/EX pipeline registers.
+
 \item{\textbf{register\_destination\_from\_ex\_mem}} \\
-Description of it.
+    The destination register address from the EX/MEM pipeline registers.
+
 \item{\textbf{register\_destination\_from\_mem\_wb}} \\
-Description of it.
+    The destination register address from the MEM/WB pipeline registers.
+
 \item{\textbf{register\_write\_from\_ex\_mem}} \\
-Description of it.
+    The register write control signal from the EX/MEM pipeline registers.
+
 \item{\textbf{register\_write\_from\_mem\_wb}} \\
-Description of it.
+    The register write control signal from the MEM/WB pipeline registers.
 \end{description}
 
 \subsubsection{Out Signals}
 
 \begin{description}
 \item{\textbf{forward\_rs\_out}} \\
-Description of it.
+    The forwarded value of the Rs register.
+
 \item{\textbf{forward\_rt\_out}} \\
-Description of it.
+    The forwarded value of the Rt register.
+
 \end{description}

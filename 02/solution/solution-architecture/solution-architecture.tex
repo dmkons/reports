@@ -7,7 +7,6 @@ With a pipelined design, the processor is vulnerable to data hazards and control
 The processor resolves hazards by using a combination of data forwarding and stalling.
 One type of hazard, the use-after-load\cn hazard is not handled by the processor, and trying to execute an instruction which uses the result from a load immediately after the load instruction results in undefined behaviour.
 Instead of handling this in hardware, the bundled solution assembler solves this issue by instruction reordering, or simply inserting nops where needed.
-\todo{name-drop harvard architecture in here somewhere.}
 
 The processor architecture is modeled after the Harvard Architecture design, which means that it has separate instruction and data memory.
 This, in addition to being a security boon, makes for a more performant design, as the instruction memory and data can be accessed independantly.

@@ -1,23 +1,29 @@
-\todo{The ALU description}
+The ALU, or the arithmetic logic unit, is the heart of the processor.
+The ALU is responsible for doing actual arithmetic and logical operations on data.
+The rest of the processor is in reality machinery working to feed the ALU with as much data as quickly as possible.
+It is therefore important that the ALU can work as fast as possible, in accordance to the performance design goal\cn.
+The processor uses dedicated DSP\todo{what is DSP} slices on the FPGA to speed up the performance of the ALU.\todo{does it? have we disabled dsp slices in the syntesize menu?}
 
 \subsubsection{In Signals}
 
 \begin{description}
-\item{\textbf{x}} \\
-Description of it.
-\item{\textbf{y}} \\
-Description of it.
-\item{\textbf{function}} \\
-Description of it.
+\item{\textbf{Y}} \\
+The first operand of an ALU operation.
+
+\item{\textbf{X}} \\
+The second operand of an ALU operation.
+
+\item{\textbf{Function}} \\
+The function code that decides which operation the ALU should perform on $ X $ and $ Y $.
 \end{description}
 
 \subsubsection{Out Signals}
 
 \begin{description}
-\item{\textbf{Signal}} \\
-Description of it.
-\item{\textbf{result}} \\
-Description of it.
-\item{\textbf{zero}} \\
-Description of it.
+\item{\textbf{Result}} \\
+    The result of the ALU operation.
+
+\item{\textbf{Zero}} \\
+    A boolean value which is set if the result of the ALU operation is 0, or unset if the result of the ALU operation is not zero.
+    This signal is typically used to implement conditionals.
 \end{description}
