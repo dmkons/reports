@@ -6,18 +6,18 @@ This is because they are handled by other components of the system.
 \subsubsection{In Signals}
 
 \begin{description}
-\item{\textbf{register\_address\_in}} \\
+\item{\textbf{Register Address}} \\
     The address of a register that is needed for an arbitrary execution.
 
-\item{\textbf{register\_write\_execute\_in}} \\
+\item{\textbf{Register Write Execute}} \\
     A boolean flag indicating whether the register destination from the execute stage will be written to.
 
-\item{\textbf{register\_write\_memory\_in}} \\
+\item{\textbf{Register Write Memory}} \\
     A boolean flag indicating whether the register destination from the memory stage will be written to.
 
-\item{\textbf{register\_destination\_execute\_in}} \\
+\item{\textbf{Register Destination Execute}} \\
     The destination register of the value from the execution stage.
-\item{\textbf{register\_destination\_memory\_in}} \\
+\item{\textbf{Register Destination Memory}} \\
     The destination register of the value from the execution stage.
 
 \end{description}
@@ -25,6 +25,6 @@ This is because they are handled by other components of the system.
 \subsubsection{Out Signals}
 
 \begin{description}
-\item{\textbf{hazard\_out}} \\
+\item{\textbf{Hazard}} \\
     A two-bit status flag indicating whether or not there is risk of a data hazard. The two bits are used for designating if the data hazard originates in the execute stage or the memory stage.
 \end{description}
