@@ -3,22 +3,29 @@ The control unit is the component that is responsible for enabling and disabling
 \subsubsection{In Signals}
 
 \begin{description}
-\item{\textbf{instruction\_opcode}} \\
-Description of it.
-\item{\textbf{instruction\_function}} \\
-Description of it.
+\item{\textbf{Instruction Opcode}} \\
+    The opcode of the currently executing instruction in the instruction decode stage.
+
+\item{\textbf{Instruction Function}} \\
+    The ALU function of the currently executing instruction in the instruction decode stage. 
 \end{description}
 
 \subsubsection{Out Signals}
 
 \begin{description}
-\item{\textbf{ex\_control\_signals}} \\
-Description of it.
-\item{\textbf{mem\_control\_signals}} \\
-Description of it.
-\item{\textbf{wb\_control\_signals}} \\
-Description of it.
-\item{\textbf{jump}} \\
-Description of it.
+\item{\textbf{Execute Control Signals}} \\
+    The control signals that should be used in the execute stage for the instruction being decoded by the control unit.
+    The execute control signals bus contains the \textbf{ALU Source}, \textbf{ALU Function} and \textbf{Register Destination} control signals.
+
+\item{\textbf{Memory Control Signals}} \\
+    The control signals that should be used in the memory stage for the instruction being decoded by the control unit.
+    The memory control signals bus contains the \textbf{Branch} and \textbf{Memory Write} control signals.
+
+\item{\textbf{Write-Back Control Signals}} \\
+    The control signals that should be used in the write-back stage for the instruction being decoded by the control unit.
+The write-back control signals bus contains the \textbf{Memory to Register} and \textbf{Register Write} control signals.
+
+\item{\textbf{Jump}} \\
+    Whether or not the instruction being decoded is a jumping instruction (i.e. \texttt{JMP}).
 \end{description}
 
