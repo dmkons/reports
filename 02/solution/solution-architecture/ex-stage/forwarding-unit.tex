@@ -4,6 +4,8 @@ The forwarding unit is essential to achieving a high performance pipelined desig
 The forwarding unit looks at which data is needed in the execution stage, and if the needed data has been updated down the pipeline but not in the register file, forwards the data to the ALU instead of the old data fetched from the register file by the instruction decode stage.
 To be able to do this, the forwarding unit needs data from many different stages at once.
 
+The forwarding unit uses the Hazard Detector component for the actual hazard detection, and performs its forwarding based on the output of the Hazard Detector.
+
 \subsubsection{In Signals}
 
 \begin{description}

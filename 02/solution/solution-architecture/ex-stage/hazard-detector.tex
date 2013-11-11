@@ -1,23 +1,30 @@
-\todo{The Hazard Detector description}
+The Hazard Detector looks at the instructions at different places in the pipeline and detects if there is a possibility for a data hazard.
+The Hazard Detector is used by the forwarding unit to determine whether or not values should be forwarded.
+The Hazard Detector does not recognize control hazards or use-after-load hazards.
+This is because they are handled by other components of the system.
 
 \subsubsection{In Signals}
 
 \begin{description}
 \item{\textbf{register\_address\_in}} \\
-Description of it.
+    The address of a register that is needed for an arbitrary execution.
+
 \item{\textbf{register\_write\_execute\_in}} \\
-Description of it.
+    A boolean flag indicating whether the register destination from the execute stage will be written to.
+
 \item{\textbf{register\_write\_memory\_in}} \\
-Description of it.
+    A boolean flag indicating whether the register destination from the memory stage will be written to.
+
 \item{\textbf{register\_destination\_execute\_in}} \\
-Description of it.
+    The destination register of the value from the execution stage.
 \item{\textbf{register\_destination\_memory\_in}} \\
-Description of it.
+    The destination register of the value from the execution stage.
+
 \end{description}
 
 \subsubsection{Out Signals}
 
 \begin{description}
 \item{\textbf{hazard\_out}} \\
-Description of it.
+    A two-bit status flag indicating whether or not there is risk of a data hazard. The two bits are used for designating if the data hazard originates in the execute stage or the memory stage.
 \end{description}
