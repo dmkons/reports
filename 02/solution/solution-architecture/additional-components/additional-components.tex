@@ -1,10 +1,29 @@
 \subsubsection{Pipeline Registers}
-\todo{this}
+
+Between each stage of the pipeline there are series of registers that hold the necessary values between clock ticks.
+The pipeline registers are clocked synchronously, which means that the pipeline design is a buffered synchronous design.
+The pipeline registers are implemented as flip-flops.
+
 
 \subsubsection{Flip Flop}
-\todo{this}
+
+A flip-flop is a simple circuit that has two stable states.
+The implication is that they can be used to store values over time.
+
+In the solution processor, size-generic flip-flops VHDL are used.
+Because type generics were introduced in the VHDL'2002 standard\cn, and the Xilinx tool chain still doesn't support it (11 years after it was introduced!), flip-flops are implemented on a per-type basis.
+Subsequently, the \texttt{flip\_flop.vhd} VHDL source code file is a lot bigger and hairier than it could be.
 
 \subsubsection{Multiplexors}
-\todo{this}
+
+A multiplexor is a component which selects between multiple input signals based on a separate control signal.
+Since multiplexors are use quite commonly, and VHDL has no build in construct for it, some multiplexor components are introduced in the solution.
+
 \subsubsubsection{Mux 2}
+
+The Mux 2 selects one of two possible input values based on the value of a 1-bit selection signal.
+
 \subsubsubsection{Mux 3}
+
+The Mux 3 selects one of three possible input values based on the value of a 2-bit selection signal.
+Since a 2-bit selection signal may have 4 possible states, and the Mux 3 only has three inputs, one of the selection signal states ("\texttt{11}") holds undefined behaviour.
