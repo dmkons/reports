@@ -3,17 +3,17 @@ This section presents the different kinds of tests performed.
 
 \section{Performance}
 
-The reported maximum frequency of the synthesized processor with the default performance optimization settings is 133.500Mhz, i.e. a minimum clock period of 7.491ns.
+The reported maximum frequency of the synthesized processor with the default performance optimization settings is 133.500MHz, i.e. a minimum clock period of 7.491ns.
 Enabling the same optimization flags as in \cite{assignment-1}, and with the optimization effort set to high, the reported maximum frequency of the optimized processor is 137.578MHz.
 
 \section{Energy Efficiency}
 \label{results:energy-efficiency}
 
-Xilinx ISE's integrated Xilinx Xpower Analyzer can generate power usage reports based on VHDL designs.
-However, when generating power analysis reports, it unfortunately incorrectly assumed that the clock signals in the processor design had a clock frequency of 0 Mhz.
+Xilinx ISE's integrated Xilinx XPower Analyzer can generate power usage reports based on VHDL designs.
+However, when generating power analysis reports, it unfortunately incorrectly assumed that the clock signals in the processor design had a clock frequency of 0 MHz.
 Because of this, the measurements are considered to be of low accuracy.
-Still, this report is useful for getting a vendor-assisted power consumption estimate of the quiscient current through the chip.
-Xilinx XPower Analyzer reports the quiscient power usage to be 14.84mW.
+Still, this report is useful for getting a vendor-assisted power consumption estimate of the quiescent current through the chip.
+Xilinx XPower Analyzer reports the quiescent power usage to be 14.84mW.
 
 Using avProg's\cn built-in energy measurement utility, the energy usage of the processor running on the FPGA was measured.
 Figure \vref{figure:avprog-energy-idle} shows the energy usage of the processor programmed onto the FPGA with the processor in command mode (i.e. the processor enable flag unset).

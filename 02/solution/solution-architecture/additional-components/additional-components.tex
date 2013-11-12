@@ -14,19 +14,19 @@ In the solution processor, size-generic flip-flops VHDL are used.
 Because type generics were first introduced in the VHDL 2008 standard\cite{vhdl2008}, and the Xilinx tool chain doesn't support it yet, flip-flops are implemented on a per-type basis.
 Subsequently, the \texttt{flip\_flop.vhd} VHDL source code file is a lot bigger and hairier than it could be.
 
-\subsubsection{Multiplexors}
+\subsubsection{Multiplexers}
 
-A multiplexor is a component which selects between multiple input signals based on a separate control signal.
-Since multiplexors are use quite commonly, and VHDL has no build in construct for it, some multiplexor components are introduced in the solution.
+A multiplexer is a component which selects between multiple input signals based on a separate control signal.
+Since multiplexers are use quite commonly, and VHDL has no build in construct for it, some multiplexer components are introduced in the solution.
 
-\subsubsubsection{Mux 2}
+\subsubsubsection{Multiplexer 2}
 
-The Mux 2 selects one of two possible input values based on the value of a 1-bit selection signal.
+The Multiplexer 2 selects one of two possible input values based on the value of a 1-bit selection signal.
 
-\subsubsubsection{Mux 3}
+\subsubsubsection{Multiplexer 3}
 
-The Mux 3 selects one of three possible input values based on the value of a 2-bit selection signal.
-Since a 2-bit selection signal may have 4 possible states, and the Mux 3 only has three inputs, one of the selection signal states ("\texttt{11}") holds undefined behaviour.
+The Multiplexer 3 selects one of three possible input values based on the value of a 2-bit selection signal.
+Since a 2-bit selection signal may have 4 possible states, and the Multiplexer 3 only has three inputs, one of the selection signal states ("\texttt{11}") holds undefined behaviour.
 
 \subsubsection{Pipeline flusher}
 
