@@ -30,4 +30,6 @@ Since a 2-bit selection signal may have 4 possible states, and the Multiplexer 3
 
 \subsubsection{Pipeline flusher}
 
-\todo{write about this}
+The pipeline flusher is reponsible for flushing the pipeline if a branch prediction goes wrong.
+In such a case, the pipeline will be filled with instructions that shouldn't be executed.
+The pipeline flusher disables these instructions by removing their ability to write to registers and memory.

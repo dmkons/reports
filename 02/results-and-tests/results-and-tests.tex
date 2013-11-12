@@ -15,20 +15,20 @@ Because of this, the measurements are considered to be of low accuracy.
 Still, this report is useful for getting a vendor-assisted power consumption estimate of the quiescent current through the chip.
 Xilinx XPower Analyzer reports the quiescent power usage to be 14.84mW.
 
-Using avProg's\cn built-in energy measurement utility, the energy usage of the processor running on the FPGA was measured.
+Using avProg's built-in energy measurement utility, the energy usage of the processor running on the FPGA was measured.
 Figure \vref{figure:avprog-energy-idle} shows the energy usage of the processor programmed onto the FPGA with the processor in command mode (i.e. the processor enable flag unset).
 Figure \vref{figure:avprog-energy-running} shows the energy usage of the processor programmed onto the FPGA with the processor running a program.
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{illustrations/paused.PNG}
 \caption{Energy measurements in avProg with the processor not enabled.}
-\label{figure-avprog-energy-idle}
+\label{figure:avprog-energy-idle}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{illustrations/running.PNG}
 \caption{Energy measurements in avProg with the processor enabled.}
-\label{figure-avprog-energy-running}
+\label{figure:avprog-energy-running}
 \end{figure}
 
 \section{VHDL Test Benches}
@@ -37,7 +37,7 @@ Every usefully testable component designed in VHDL has a corresponding test benc
 Informally, every \texttt{*.vhd} file has a \texttt{tb\_*.vhd} file.
 Testing every component individually ensures a high quality processor implementation, as it is easy to find, isolate and correct bugs.
 
-The test benches were simulated using ISim. See appendix \todo{add an appendix with tb test results, images} for the test results from the individual test benches. 
+The test benches were simulated using ISim. See appendix \vref{appendix:tb} for the test results from the individual test benches. 
 The test utilities introduced in \cite{assignment-1} were used to automate testing.
 
 \section{Testing on the Spartan-6 FPGA}
@@ -46,7 +46,8 @@ The solution processor was programmed onto an FPGA using avProg.
 The processor was successfully programmed and run, but reading the data back from the data memory did not work as expected.
 Trying to read data from the data memory of the processor resulted in the communications spinning in an eternal loop.
 
-\section{Testing of the compiler}
+\section{Testing of the Assembler}
 
-The compiler was tested on a small collection of short assembly programs.
-The output of the compiler was tested against the hand-compiled versions of the same programs.
+The assembler was tested on a small collection of short assembly programs.
+The output of the assembler was compared against the hand-assembled versions of the same programs.
+No lower-level unit-testing of the assembler was done.

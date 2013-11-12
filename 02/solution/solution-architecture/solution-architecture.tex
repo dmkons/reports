@@ -11,7 +11,7 @@ With a pipelined design, the processor is vulnerable to data hazards and control
 A hazard, in processor design terminology, is a situation where a planned execution in a processor cannot be performed because it is dependant on the outcome of a previous execution which has not yet completed.
 This is made possible because of the introduction of instruction-level parallelism.
 The solution processor presented in this report resolves hazards by using a combination of data forwarding and stalling.
-One type of hazard, the use-after-load\cn hazard, where an instruction relies on the data from a memory load in the instruction immediately preceding it, is not handled by the processor.
+One type of hazard, the use-after-load hazard, where an instruction relies on the data from a memory load in the instruction immediately preceding it, is not handled by the processor.
 Trying to execute an instruction which uses the result from a load immediately after the load instruction results in undefined behaviour.
 Instead of handling this in hardware, the bundled solution assembler solves this issue by instruction reordering, or simply inserting nops where needed.
 This is done to remove complexity from the processor core, which in turn increases processor performance, which is aligned with the performance goal from section \vref{subsection:performance}.
@@ -31,7 +31,6 @@ The blue lines are control signals.
     \caption{The processor architecture}
     \label{figure:architecture}
 \end{figure}
-
 
 The rest of this section describes the different architectural sub-components in detail.
 

@@ -19,13 +19,10 @@ The control unit is the component that is responsible for enabling and disabling
 
 \item{\textbf{Memory Control Signals}} \\
     The control signals that should be used in the memory stage for the instruction being decoded by the control unit.
-    The memory control signals bus contains the \textbf{Branch} and \textbf{Memory Write} control signals.
+    The memory control signals bus contains the \textbf{Branch}, \textbf{Jump} and \textbf{Memory Write} control signals.
 
 \item{\textbf{Write-Back Control Signals}} \\
     The control signals that should be used in the write-back stage for the instruction being decoded by the control unit.
 The write-back control signals bus contains the \textbf{Memory to Register} and \textbf{Register Write} control signals.
-
-\item{\textbf{Jump}} \\
-    Whether or not the instruction being decoded is a jumping instruction (i.e. \texttt{JMP}).
 \end{description}
 

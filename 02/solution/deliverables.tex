@@ -3,15 +3,24 @@ The structure of the delivery is shown in figure \vref{figure:delivery-structure
 \begin{center}
 \begin{figure}[H]
 \dirtree{%
-.1 /.
+.1 code/.
+.2 assembler/.
+.2 compiled/.
+.2 driver/.
+.2 hardware/.
+.2 tests/.
+.2 code.xise.
+.1 report.pdf.
 }
 \caption{Directory structure of the deliverables}
 \label{figure:delivery-structure}
 \end{figure}
 \end{center}
 
-\todo{the directory structure}
-
 The \texttt{code} folder contains the project code, while \texttt{report.pdf} is the report you are reading right this instant.	
 
-\todo{don't forget to deliver the compiler}
+The \texttt{assembler} sub-folder contains the python assembler.
+The \texttt{compiled} sub-folder contains the compiled projects for FPGA programming.
+The \texttt{driver} sub-folder contains driver code.
+The \texttt{hardware} sub-folder contains the processor VHDL implementation files.
+The \texttt{tests} sub-folder contains the processor VHDL test bench files.
