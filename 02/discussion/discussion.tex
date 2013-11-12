@@ -2,12 +2,27 @@ This chapter discusses the performance and test results of the presented solutio
 
 \section{Requirements}
 
-\todo{Did we meet our requirements?}
+The requirements stated that an optimized pipeline processor be implemented in VHDL and programmed onto an FPGA.
+The solution processor presented in this report meets these requirements.
+
+An instruction set roughly twice the size of the minimal required instruction set is supported by the solution presented in this report, and all the required instructions are of course supported.
+
+The processor is highly optimized, implementing features such as data forwarding and branch prediction to achieve great performance.
+To put things in perspective, the processor in this assignment is capable of executing over 137 million instructions per second in optimal conditions.
+This is an order of magnitude faster than the simple multi-cycle processor presented in \cite{assignment-1}.
 
 \section{Additional Goals}
 
-\todo{Did we meet our additional goals?}
+The first of the two additional goals for this assignment was simplicity, as documented in section \vref{subsection:simplicity}.
+The presented solution processor implements a considerably less obese instruction set compared to the processor in \cite{assignment-1}, and is implementation-wise less complex in many areas.
+Because of this, the solution processor has achieved a better test coverage than the processor presented in \cite{assingment-1}, and it has been successfully programmed onto an FPGA.
+
+The second of the two additional goals for this assignment was performance, as documented in section \vref{subsection:performance}.
+The presented solution processor is a performant processor, so this additional goal was also met to a satisfactory degree.
 
 \section{About the Work Process}
 
-\todo{How was our work process?}
+Time management is the strongest skill asset attributable to the authors of this report.
+Much like the work process illustrated in \cite{assignment-1}, most of the work for this assignment was completed near the deadline.
+Additionally, circumstances should have it that other academic pursuits, namely the computer project in TDT4295, a course offered by the same faculty that offers the course for which this report is written, have overshadowed this assignment.
+Coinciding deadlines in both courses have been impractical, but in the end late nights and long hours compensated for the lack of co-ordination.ack of co-ordination.

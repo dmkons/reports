@@ -77,10 +77,11 @@ This section contains a description list of the tools used for the assignment.
 
 \subsection{Linux Tool Chain}
 
-In addition to the Windows-based proprietary Xilinx tool chain available in the lab\cn, a Linux-based free open source tool called GHDL was used.
+In addition to the Windows-based proprietary Xilinx tool chain available in the lab, a Linux-based free open source tool called GHDL was used.
 GHDL is the leading open source VHDL compiler\cn, and offers many benefits over the clunky Xilinx tool chain for rapid development and iteration.
 Although it is not as feature-rich as the Xilinx tools, and does not offer critical functionality such as synthesizing, it out-performs Xilinx in other areas.
 Two areas in which it excels are intelligent error messages during analysis, and speed of compilation.
+\newpage
 As a comparison, consider a typical error message from Xilinx ISE in figure \vref{figure:xilinx-error-message}, and compare it to the error message produced by GHDL for the same error in \vref{figure:ghdl-error-message}.
 This error was produced by removing the keyword \texttt{begin} from the architecture begin statement of the \texttt{flip\_flip} entity.
 Especially dumbfounding is the error message in figure \vref{figure:xilinx-error-message} referring to an \texttt{is\_x}.

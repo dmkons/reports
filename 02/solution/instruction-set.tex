@@ -3,7 +3,7 @@ A quick reference of the MIPS instruction set can be found in Figure 3.4 of the 
 The instructions, as in regular MIPS, can be on one of three general formats: R, I and J~\cite[p.109-11]{compendium}.
 
 The solution processor implements the instructions in table \vref{table:implemented-instructions}.
-Although implementing a large instruction set was not a design goal in this assignment, as it was in assignment \#1\cn, the processor still supports quite a few more instructions than the minimum requirements.
+Although implementing a large instruction set was not a design goal in this assignment, as it was in assignment \#1\cite{assignment-1}, the processor still supports quite a few more instructions than the minimum requirements.
 This is because of the addition of an assembler, which allows for pseudo-instructions.
 The number of supported instructions in the instruction set all but doubles because of this.
 
@@ -21,7 +21,7 @@ The number of supported instructions in the instruction set all but doubles beca
             \texttt{MV} & Move (pseudo) \\
             \texttt{NEG} & Negation (pseudo) \\
             \texttt{NOP} & No operation (pseudo) \\
-            \texttt{PASSTHROUGH} & Passthrough (i.e. send the X input unmodified through the ALU) \\
+            \texttt{PASSTHROUGH} & Passthrough (i.e. send the Y input unmodified through the ALU) \\
             \texttt{SUB} & Subtract \\
         \end{tabular}
         \smallskip

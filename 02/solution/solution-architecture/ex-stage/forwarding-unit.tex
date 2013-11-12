@@ -1,4 +1,4 @@
-The forwarding unit is responsible for forwarding newly computed data from later stages in the pipeline to earlier stages, where new instructions might need the data before they are commited to registers at the end of the pipeline.
+The forwarding unit is responsible for forwarding newly computed data from later stages in the pipeline to earlier stages, where new instructions might need the data before they are committed to registers at the end of the pipeline.
 The forwarding unit is essential to achieving a high performance pipelined design, as without it computations would either be wrong or slow.
 
 The forwarding unit looks at which data is needed in the execution stage, and if the needed data has been updated down the pipeline but not in the register file, forwards the data to the ALU instead of the old data fetched from the register file by the instruction decode stage.

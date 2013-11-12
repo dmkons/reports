@@ -1,15 +1,26 @@
 The processor architecture is a MIPS-inspired pipelined architecture with five stages.
 The five stages are called Instruction Fetch, Instruction Decode, Execution, Memory and Write Back.
 Each stage is separated by pipeline registers that hold the relevant data for the different stages between clock cycles.
-With a pipelined design, the processor is vulnerable to data hazards and control hazards \todo{explain what hazards are somewhere?}.
-The processor resolves hazards by using a combination of data forwarding and stalling.
-One type of hazard, the use-after-load\cn hazard is not handled by the processor, and trying to execute an instruction which uses the result from a load immediately after the load instruction results in undefined behaviour.
+Since the the CPU is pipelined, it can achieve much higher performance than the simple multi-cycle processor architecture designed in the previous assignment\cite{assignment-1}.
+For ideal execution, every component of the processor is in use in every cycle, giving a high utilization of resources.
+Paradoxically, even though pipelined processor designs can be much more performant than simple multi-cycle processor designs, they are not necessarily more complex.
+This is because there is no longer need for a massive state machine in the control unit in the pipeline processor, as there would be in a multi-cycle processor control unit.
+
+Not everything is better with a pipelined design, however.
+With a pipelined design, the processor is vulnerable to data hazards and control hazards.
+A hazard, in processor design terminology, is a situation where a planned execution in a processor cannot be performed because it is dependant on the outcome of a previous execution which has not yet completed.
+This is made possible because of the introduction of instruction-level parallelism.
+The solution processor presented in this report resolves hazards by using a combination of data forwarding and stalling.
+One type of hazard, the use-after-load\cn hazard, where an instruction relies on the data from a memory load in the instruction immediately preceeding it, is not handled by the processor.
+Trying to execute an instruction which uses the result from a load immediately after the load instruction results in undefined behaviour.
 Instead of handling this in hardware, the bundled solution assembler solves this issue by instruction reordering, or simply inserting nops where needed.
+This is done to remove complexity from the processor core, which in turn increases processor performance, which is aligned with the performance goal from section \vref{subsection:performance}.
 
 The processor architecture is modeled after the Harvard Architecture design, which means that it has separate instruction and data memory.
 This, in addition to being a security boon, makes for a more performant design, as the instruction memory and data can be accessed independantly.
-This is aligned with the performance design goal.
-This removes the need for a central memory access arbitrage unit, which increases the simplicty of the design in accordance to the design goals\cn.
+This is aligned with the performance design goal from \vref{subsection:performance}.
+
+Having separate memories for data and instructions also removes the need for a central memory access arbitrage unit, which increases the simplicty of the design in accordance to the design goal in section\vref{subsection:simplicity}.
 
 The processor architecture can bee seen illustrated in figure \vref{figure:architecture}.
 The tall orange bars are the pipeline registers.
