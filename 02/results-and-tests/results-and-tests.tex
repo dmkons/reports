@@ -7,6 +7,7 @@ The reported maximum frequency of the synthesized processor with the default per
 Enabling the same optimization flags as in \cite{assignment-1}, and with the optimization effort set to high, the reported maximum frequency of the optimized processor is 137.578MHz.
 
 \section{Energy Efficiency}
+\label{results:energy-efficiency}
 
 Xilinx ISE's integrated Xilinx Xpower Analyzer can generate power usage reports based on VHDL designs.
 However, when generating power analysis reports, it unfortunately incorrectly assumed that the clock signals in the processor design had a clock frequency of 0 Mhz.
@@ -17,6 +18,18 @@ Xilinx XPower Analyzer reports the quiscient power usage to be 14.84mW.
 Using avProg's\cn built-in energy measurement utility, the energy usage of the processor running on the FPGA was measured.
 Figure \vref{figure:avprog-energy-idle} shows the energy usage of the processor programmed onto the FPGA with the processor in command mode (i.e. the processor enable flag unset).
 Figure \vref{figure:avprog-energy-running} shows the energy usage of the processor programmed onto the FPGA with the processor running a program.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{illustrations/paused.PNG}
+\caption{Energy measurements in avProg with the processor not enabled.}
+\label{figure-avprog-energy-idle}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{illustrations/running.PNG}
+\caption{Energy measurements in avProg with the processor enabled.}
+\label{figure-avprog-energy-running}
+\end{figure}
 
 \section{VHDL Test Benches}
 
